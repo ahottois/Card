@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartes Animées Personnalisables</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="trash-card.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cartes Animées</h1>
+        
+        <div class="tags-filter">
+            <h3>Filtrer par tags:</h3>
+            <div id="tagsList" class="tags-list">
+                <!-- Les tags seront ajoutés ici dynamiquement -->
+                <span class="tag active" data-tag="all">Tous</span>
+            </div>
+        </div>
+        
+        <!-- Conteneur import/export sera ajouté ici par JavaScript -->
+        
+        <div class="cards-container" id="cardsContainer">
+            <!-- Carte explicative -->
+            <div class="card info-card" data-color="#3c67e3" data-tags="info" data-title="Comment ça marche" data-explanation="Utilisez les cartes pour organiser vos informations" data-content="Cette application vous permet de créer des cartes animées pour classer vos informations avec des tags personnalisés. Cliquez sur une carte pour voir son contenu complet. Utilisez les tags pour filtrer vos cartes. Vous pouvez exporter et importer vos cartes pour les sauvegarder." data-image="/api/placeholder/400/300?text=Instructions">
+                <div class="card-content">
+                    <h2>Comment ça marche</h2>
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300?text=Instructions" alt="Instructions">
+                    </div>
+                    <p class="card-explanation">Utilisez les cartes pour organiser vos informations</p>
+                    <div class="card-tags">
+                        <span class="card-tag">info</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Carte avec bouton + -->
+            <div class="card add-card" id="addCardButton">
+                <div class="card-content">
+                    <span class="plus-icon">+</span>
+                    <p>Ajouter une carte</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal pour ajouter une carte -->
+<div id="cardModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Ajouter une nouvelle carte</h2>
+        <form id="cardForm">
+            <div class="form-group">
+                <label for="cardTitle">Titre:</label>
+                <input type="text" id="cardTitle" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="cardExplanation">Explication courte:</label>
+                <input type="text" id="cardExplanation" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="cardContent">Contenu (texte long):</label>
+                <textarea id="cardContent" rows="5"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="cardTags">Tags (séparés par des virgules):</label>
+                <input type="text" id="cardTags">
+            </div>
+            
+            <div class="form-group color-preview-container">
+                <label for="cardColor">Couleur:</label>
+                <div class="color-picker-wrapper">
+                    <input type="color" id="cardColor" value="#3c67e3">
+                    <div class="color-preview">Aperçu de la couleur</div>
+                </div>
+            </div>
+            
+            <div class="form-group image-checkbox-container">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="useImage"> Ajouter une image
+                </label>
+            </div>
+            
+            <div class="form-group" id="gallerySelector" style="display: none;">
+                <label>Sélectionnez une image:</label>
+                <div class="image-gallery" id="imageGallery">
+                    <!-- Les miniatures d'images seront chargées ici -->
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Ajouter Carte</button>
+        </form>
+    </div>
+</div>
+        
+        <!-- Modal pour afficher le contenu complet d'une carte -->
+        <div id="viewCardModal" class="modal">
+            <div class="modal-content view-card-content">
+                <span class="close-modal">&times;</span>
+                <div id="viewCardContent">
+                    <!-- Le contenu de la carte sera inséré ici -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Créé avec ❤️ - <a href="#">Cartes Animées Personnalisables</a></p>
+    </footer>
+    
+    <script src="script.js"></script>
+	<script src="trash-card.js"></script>
+</body>
+</html>
