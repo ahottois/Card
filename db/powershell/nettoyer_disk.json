@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Vider la corbeille",
+    "explanation": "Supprime tous les fichiers présents dans la corbeille du disque sélectionné.",
+    "content": "Clear-RecycleBin -DriveLetter C -Force -Verbose",
+    "tags": ["corbeille", "recycle bin", "nettoyage", "PowerShell", "disque dur"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Supprimer les fichiers temporaires utilisateur",
+    "explanation": "Efface tous les fichiers du dossier temporaire de l'utilisateur courant.",
+    "content": "Remove-Item -Path $env:TEMP\\* -Recurse -Force -ErrorAction SilentlyContinue",
+    "tags": ["temp", "fichiers temporaires", "utilisateur", "PowerShell", "nettoyage"],
+    "color": "#e33c3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Supprimer les fichiers temporaires Windows",
+    "explanation": "Efface les fichiers du dossier temporaire du système Windows.",
+    "content": "Remove-Item -Path C:\\Windows\\Temp\\* -Recurse -Force -ErrorAction SilentlyContinue",
+    "tags": ["temp", "windows", "fichiers temporaires", "PowerShell", "nettoyage"],
+    "color": "#3ce36a",
+    "imageSrc": ""
+  },
+  {
+    "title": "Nettoyer le dossier SoftwareDistribution",
+    "explanation": "Supprime les anciens fichiers de mise à jour Windows pour libérer de l'espace.",
+    "content": "Stop-Service -Name wuauserv -Force\nRemove-Item -Path C:\\Windows\\SoftwareDistribution\\* -Recurse -Force\nStart-Service -Name wuauserv",
+    "tags": ["update", "SoftwareDistribution", "Windows Update", "PowerShell", "nettoyage"],
+    "color": "#e3b13c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Exécuter l’outil Nettoyage de disque Windows",
+    "explanation": "Lance l’outil cleanmgr pour supprimer les fichiers système inutiles.",
+    "content": "Start-Process cleanmgr.exe -ArgumentList '/sagerun:1' -Wait",
+    "tags": ["cleanmgr", "nettoyage disque", "outil système", "PowerShell"],
+    "color": "#3c9be3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Nettoyer les logs d’événements Windows",
+    "explanation": "Efface les journaux d’événements pour libérer de l’espace.",
+    "content": "wevtutil el | Foreach-Object { wevtutil cl $_ }",
+    "tags": ["logs", "événements", "wevtutil", "PowerShell", "nettoyage"],
+    "color": "#a83ce3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Supprimer les fichiers de préchargement",
+    "explanation": "Efface les fichiers du dossier Prefetch pour libérer de l’espace.",
+    "content": "Remove-Item -Path C:\\Windows\\Prefetch\\* -Recurse -Force -ErrorAction SilentlyContinue",
+    "tags": ["prefetch", "optimisation", "windows", "PowerShell", "nettoyage"],
+    "color": "#3ce3c2",
+    "imageSrc": ""
+  },
+  {
+    "title": "Nettoyer les dumps mémoire",
+    "explanation": "Supprime les fichiers de dump mémoire générés par Windows.",
+    "content": "Remove-Item -Path C:\\Windows\\Minidump\\* -Recurse -Force -ErrorAction SilentlyContinue\nRemove-Item -Path C:\\Windows\\MEMORY.DMP -Force -ErrorAction SilentlyContinue",
+    "tags": ["dump", "mémoire", "minidump", "PowerShell", "nettoyage"],
+    "color": "#e36a3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Nettoyer le composant store Windows (DISM)",
+    "explanation": "Libère de l’espace disque en supprimant les composants Windows obsolètes.",
+    "content": "dism.exe /Online /Cleanup-Image /StartComponentCleanup",
+    "tags": ["dism", "composant store", "windows", "PowerShell", "nettoyage"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Afficher l’espace disque avant et après nettoyage",
+    "explanation": "Montre l’espace disque utilisé et libre avant et après le nettoyage.",
+    "content": "$avant = Get-PSDrive C\n# ... (exécuter les commandes de nettoyage) ...\n$apres = Get-PSDrive C\nWrite-Host \"Avant: $($avant.Free/1GB) Go libres / Après: $($apres.Free/1GB) Go libres\"",
+    "tags": ["espace disque", "avant après", "PowerShell", "monitoring", "nettoyage"],
+    "color": "#e33c7a",
+    "imageSrc": ""
+  }
+]

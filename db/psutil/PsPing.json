@@ -1,0 +1,79 @@
+[
+  {
+    "title": "Présentation de PsPing",
+    "explanation": "PsPing est un utilitaire Sysinternals qui permet de mesurer la latence, la bande passante et la connectivité réseau en ICMP, TCP ou UDP. Il offre des fonctionnalités avancées de tests réseau, y compris histogrammes, tests en continu, et mesures de jitter.",
+    "content": "PsPing fait partie de la suite PsTools et fonctionne sur Windows 8.1/10/11 et Windows Server 2012 ou supérieur. Il permet de réaliser des tests de ping classiques (ICMP), de ping TCP/UDP, de mesurer la latence, la bande passante et de produire des histogrammes détaillés des temps de réponse.",
+    "tags": ["psping", "sysinternals", "latence", "bande passante", "ping", "réseau"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et utiliser PsPing.",
+    "content": "Téléchargez PsPing depuis https://learn.microsoft.com/en-us/sysinternals/downloads/psping. Décompressez l'exécutable dans un dossier de votre PATH. Exécutez psping.exe depuis l'invite de commandes ou PowerShell.",
+    "tags": ["psping", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Ping ICMP classique",
+    "explanation": "Test de connectivité réseau standard, similaire à la commande ping.",
+    "content": "psping -n 10 -w 3 google.com\n# 10 pings avec 3 itérations de chauffe (warmup)",
+    "tags": ["psping", "icmp", "ping", "latence"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Ping TCP (test de port)",
+    "explanation": "Test de connectivité et latence sur un port TCP spécifique (utile si ICMP est bloqué).",
+    "content": "psping -n 100 -i 0 -q serveur.exemple.com:443\n# 100 pings TCP sur le port 443, aussi rapide que possible, sortie silencieuse",
+    "tags": ["psping", "tcp", "ping", "latence", "port"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Test de latence TCP/UDP avancé",
+    "explanation": "Mesure la latence aller-retour entre deux hôtes avec histogramme.",
+    "content": "# Sur la machine serveur :\npsping -s 192.168.1.10:5000\n# Sur la machine cliente :\npsping -l 8k -n 10000 -h 100 192.168.1.10:5000\n# En UDP, ajoutez -u sur le client et le serveur.",
+    "tags": ["psping", "latence", "tcp", "udp", "histogramme"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Test de bande passante TCP/UDP",
+    "explanation": "Mesure la bande passante maximale entre deux systèmes.",
+    "content": "# Sur la machine serveur :\npsping -s 192.168.1.10:5000\n# Sur la machine cliente :\npsping -b -l 8k -n 10000 -h 100 192.168.1.10:5000\n# Ajoutez -u pour tester en UDP.",
+    "tags": ["psping", "bande passante", "tcp", "udp", "performance"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Tests en continu et statistiques",
+    "explanation": "Ping en continu jusqu'à interruption, puis affiche les statistiques.",
+    "content": "psping -t google.com\n# Ctrl+C pour arrêter, Ctrl+Pause pour afficher les stats intermédiaires",
+    "tags": ["psping", "continu", "statistiques", "ping"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Personnaliser la taille des paquets et l'intervalle",
+    "explanation": "Ajuste la taille des paquets envoyés et la fréquence des tests.",
+    "content": "psping -l 32k -i 0.1 google.com\n# Paquets de 32 Ko, intervalle de 0,1 seconde entre chaque ping",
+    "tags": ["psping", "paquet", "intervalle", "réglage"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Histogramme des temps de réponse",
+    "explanation": "Affiche un histogramme détaillé des latences mesurées.",
+    "content": "psping -n 1000 -h 50 google.com\n# 1000 pings, histogramme sur 50 intervalles",
+    "tags": ["psping", "histogramme", "analyse", "latence"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Utilisation avancée (options principales)",
+    "explanation": "Résumé des options les plus utiles de PsPing.",
+    "content": "-n <count> : nombre de pings ou durée (ex : 10s)\n-i <interval> : intervalle entre les pings (secondes)\n-l <taille> : taille du paquet (ex : 8k, 1m)\n-q : sortie silencieuse\n-h [buckets] : histogramme\n-t : ping en continu\n-4 / -6 : forcer IPv4 ou IPv6\n-u : UDP (par défaut TCP)\n-b : test de bande passante\n-s : mode serveur pour latence/bande passante\n-f : ouvre le port firewall temporairement\n-w <count> : nombre d'itérations de chauffe (warmup)",
+    "tags": ["psping", "options", "avancé", "aide"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Bonnes pratiques et cas d'usage",
+    "explanation": "Conseils pour exploiter PsPing en entreprise ou en diagnostic réseau.",
+    "content": "- Utilisez PsPing pour diagnostiquer les problèmes de latence, de ports bloqués ou de gigue (jitter).\n- Préférez le mode TCP si ICMP est filtré ou bloqué sur le réseau.\n- Les tests de bande passante nécessitent PsPing en mode serveur sur la cible.\n- Utilisez les histogrammes pour visualiser la distribution des temps de réponse.\n- Combinez avec d'autres outils (ping, traceroute, netstat) pour un diagnostic complet.",
+    "tags": ["psping", "diagnostic", "bonnes pratiques", "réseau"],
+    "color": "#3ce36a"
+  }
+]

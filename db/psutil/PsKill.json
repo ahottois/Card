@@ -1,0 +1,79 @@
+[
+  {
+    "title": "Présentation de PsKill",
+    "explanation": "PsKill est un utilitaire Sysinternals permettant de terminer un ou plusieurs processus sur un système local ou distant, à partir du nom ou de l'identifiant du processus.",
+    "content": "PsKill fait partie de la suite PsTools. Il fonctionne sans installation sur la machine distante et permet de tuer des processus même à distance, via le réseau, en utilisant des droits administrateur. Il est compatible Windows 8.1/10/11 et Windows Server 2012 ou supérieur.",
+    "tags": ["pskill", "sysinternals", "kill", "processus", "remote"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et utiliser PsKill.",
+    "content": "Téléchargez PsKill depuis https://learn.microsoft.com/en-us/sysinternals/downloads/pskill ou la suite PsTools. Décompressez l'exécutable dans un dossier de votre PATH. Il n'y a pas d'installation nécessaire, lancez simplement pskill.exe depuis l'invite de commandes ou PowerShell.",
+    "tags": ["pskill", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Tuer un processus local par nom",
+    "explanation": "Termine tous les processus portant un nom donné sur la machine locale.",
+    "content": "pskill notepad",
+    "tags": ["pskill", "local", "nom", "processus"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Tuer un processus local par PID",
+    "explanation": "Termine le processus dont l'identifiant (PID) est spécifié.",
+    "content": "pskill 1234",
+    "tags": ["pskill", "local", "pid", "processus"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Tuer un processus à distance",
+    "explanation": "Termine un processus sur un ordinateur distant (nécessite des droits administrateur).",
+    "content": "pskill \\\\NOM_MACHINE notepad",
+    "tags": ["pskill", "distant", "nom", "processus"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Tuer un processus à distance avec authentification",
+    "explanation": "Utilise un compte spécifique pour tuer un processus sur un ordinateur distant.",
+    "content": "pskill \\\\NOM_MACHINE -u Administrateur -p MotDePasse notepad",
+    "tags": ["pskill", "distant", "authentification", "processus"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Tuer un processus et ses descendants",
+    "explanation": "Termine un processus et tous les processus enfants qu'il a lancés.",
+    "content": "pskill -t notepad",
+    "tags": ["pskill", "arbre", "descendants", "processus"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Tuer tous les processus d'un nom à distance",
+    "explanation": "Termine tous les processus d'un nom donné sur une machine distante.",
+    "content": "pskill \\\\NOM_MACHINE chrome.exe",
+    "tags": ["pskill", "distant", "batch", "processus"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Utilisation dans un script batch",
+    "explanation": "Exemple de script batch pour tuer tous les processus d'un nom sur plusieurs machines.",
+    "content": "for /f %%i in (machines.txt) do pskill \\\\%%i notepad",
+    "tags": ["pskill", "batch", "script", "multi-machine"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Options principales et syntaxe",
+    "explanation": "Résumé des options les plus utiles de PsKill.",
+    "content": "-t : Tuer le processus et ses descendants\n-u username : Spécifie un utilisateur distant\n-p password : Mot de passe pour l'utilisateur\n\\\\machine : Nom du poste distant\nprocessus : Nom ou PID du processus à tuer",
+    "tags": ["pskill", "options", "aide"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Bonnes pratiques et limitations",
+    "explanation": "Conseils pour une utilisation optimale de PsKill.",
+    "content": "- Nécessite des droits administrateur sur la machine distante\n- Le port SMB (445) doit être ouvert\n- Utilisez le chemin complet de pskill.exe dans les scripts pour éviter les erreurs\n- Utilisez l'option -t pour tuer un processus et tous ses enfants\n- Peut être utilisé dans des scripts d'automatisation pour la gestion de serveurs ou de postes clients",
+    "tags": ["pskill", "conseils", "limitations", "astuces"],
+    "color": "#3ce36a"
+  }
+]

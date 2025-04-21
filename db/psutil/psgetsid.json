@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Présentation de PsGetSid",
+    "explanation": "PsGetSid est un utilitaire Sysinternals permettant de traduire un nom de compte en SID (Security Identifier) et inversement, pour les comptes locaux, de domaine ou intégrés.",
+    "content": "PsGetSid est utilisé pour obtenir le SID d'un ordinateur, d'un utilisateur ou pour retrouver le compte associé à un SID. Il fonctionne localement ou à distance, sur un ou plusieurs systèmes, et fait partie de la suite PsTools de Sysinternals.",
+    "tags": ["psgetsid", "sysinternals", "sid", "windows", "administration"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et utiliser PsGetSid.",
+    "content": "Téléchargez PsGetSid depuis https://learn.microsoft.com/en-us/sysinternals/downloads/psgetsid ou la Sysinternals Suite. Décompressez l'exécutable dans un dossier de votre PATH. Aucune installation n'est requise, il suffit d'exécuter PsGetSid.exe depuis l'invite de commandes.",
+    "tags": ["psgetsid", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Afficher le SID de l'ordinateur local",
+    "explanation": "Affiche le SID du système sur lequel la commande est lancée.",
+    "content": "psgetsid.exe",
+    "tags": ["psgetsid", "sid", "local"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Afficher le SID d'un autre ordinateur",
+    "explanation": "Affiche le SID d'un ordinateur distant.",
+    "content": "psgetsid.exe \\\\NOM_ORDINATEUR",
+    "tags": ["psgetsid", "sid", "distant"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Afficher le SID d'un utilisateur",
+    "explanation": "Affiche le SID pour un compte utilisateur local ou de domaine.",
+    "content": "psgetsid.exe NOM_MACHINE\\nom_utilisateur\npsgetsid.exe DOMAINE\\nom_utilisateur",
+    "tags": ["psgetsid", "sid", "utilisateur"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Trouver le compte associé à un SID",
+    "explanation": "Affiche le nom du compte correspondant à un SID donné.",
+    "content": "psgetsid.exe S-1-5-21-XXXXXXXXX-XXXXXXXXX-XXXXXXXXX-XXXX",
+    "tags": ["psgetsid", "sid", "résolution"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Afficher le SID de plusieurs ordinateurs",
+    "explanation": "Obtenir les SIDs de plusieurs machines en une seule commande.",
+    "content": "psgetsid.exe \\\\PC1313,PC1314\npsgetsid.exe @servers.txt\n# servers.txt contient un nom de machine par ligne",
+    "tags": ["psgetsid", "sid", "multiple", "batch"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Utiliser un compte différent pour l'accès distant",
+    "explanation": "Spécifie un utilisateur et un mot de passe pour l'accès à distance.",
+    "content": "psgetsid.exe \\\\NOM_ORDI -u ADMINISTRATEUR -p MotDePasse",
+    "tags": ["psgetsid", "authentification", "distant"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Options avancées et aide",
+    "explanation": "Afficher toutes les options de la commande et la syntaxe complète.",
+    "content": "psgetsid.exe -?",
+    "tags": ["psgetsid", "aide", "syntaxe"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Bonnes pratiques et cas d'usage",
+    "explanation": "Conseils pour l'utilisation de PsGetSid.",
+    "content": "- Utilisez PsGetSid pour vérifier les SIDs lors de migrations, de clonage de machines ou pour résoudre des problèmes d'accès.\n- Nécessite des droits administrateur sur la machine distante.\n- Le port SMB (445) doit être ouvert pour l'accès réseau.\n- Pratique pour lister et comparer les SIDs sur plusieurs systèmes.",
+    "tags": ["psgetsid", "conseils", "astuces"],
+    "color": "#a83ce3"
+  }
+]

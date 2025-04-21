@@ -1,0 +1,93 @@
+[
+  {
+    "title": "Présentation de PsPasswd",
+    "explanation": "PsPasswd est un utilitaire Sysinternals qui permet de changer le mot de passe d’un compte local ou de domaine, en local ou à distance, sur un ou plusieurs ordinateurs Windows.",
+    "content": "PsPasswd fait partie de la suite PsTools. Il utilise les API Windows pour changer les mots de passe sans envoyer les informations en clair sur le réseau. Il fonctionne en ligne de commande et est adapté à l’automatisation de la gestion des mots de passe sur des parcs informatiques.[1][5]",
+    "tags": ["pspasswd", "sysinternals", "mot de passe", "administration", "windows"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et utiliser PsPasswd.",
+    "content": "Téléchargez PsPasswd depuis https://learn.microsoft.com/en-us/sysinternals/downloads/pspasswd ou dans la suite PsTools. Copiez l’exécutable dans un dossier de votre PATH. Lancez pspasswd.exe depuis l’invite de commandes ou PowerShell. Aucune installation n’est requise.[1][5]",
+    "tags": ["pspasswd", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Changer le mot de passe d’un compte local",
+    "explanation": "Change le mot de passe d’un utilisateur local sur la machine courante.",
+    "content": "pspasswd Administrateur NouveauMotDePasse",
+    "tags": ["pspasswd", "local", "mot de passe"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Changer le mot de passe sur un ordinateur distant",
+    "explanation": "Change le mot de passe d’un compte local sur une machine distante.",
+    "content": "pspasswd \\\\NOM_MACHINE Administrateur NouveauMotDePasse",
+    "tags": ["pspasswd", "distant", "mot de passe"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Changer le mot de passe sur plusieurs machines",
+    "explanation": "Change le mot de passe sur plusieurs ordinateurs en une seule commande.",
+    "content": "pspasswd \\\\PC1,PC2,PC3 Administrateur NouveauMotDePasse",
+    "tags": ["pspasswd", "multi-machine", "mot de passe"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Changer le mot de passe sur tous les ordinateurs du domaine",
+    "explanation": "Change le mot de passe sur tous les ordinateurs du domaine ou du réseau.",
+    "content": "pspasswd \\\\* Administrateur NouveauMotDePasse",
+    "tags": ["pspasswd", "domaine", "mot de passe", "batch"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Changer le mot de passe via un fichier de liste",
+    "explanation": "Utilise un fichier texte contenant la liste des ordinateurs cibles.",
+    "content": "pspasswd @liste_machines.txt Administrateur NouveauMotDePasse\n# liste_machines.txt contient un nom de machine par ligne",
+    "tags": ["pspasswd", "fichier", "batch", "mot de passe"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Changer le mot de passe d’un compte de domaine",
+    "explanation": "Change le mot de passe d’un compte de domaine (Active Directory).",
+    "content": "pspasswd MONDOMAINE\\UtilisateurAD NouveauMotDePasse",
+    "tags": ["pspasswd", "domaine", "active directory", "mot de passe"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Authentification distante avec identifiants",
+    "explanation": "Spécifie un utilisateur et un mot de passe pour l’accès à distance.",
+    "content": "pspasswd \\\\NOM_MACHINE -u AdminDomaine -p MotAdmin Administrateur NouveauMotDePasse",
+    "tags": ["pspasswd", "authentification", "distant"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Supprimer le mot de passe (mot de passe NULL)",
+    "explanation": "Si le nouveau mot de passe est omis, le mot de passe du compte devient vide (NULL).",
+    "content": "pspasswd Administrateur",
+    "tags": ["pspasswd", "mot de passe", "null"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Options principales et aide",
+    "explanation": "Résumé des options les plus utiles et affichage de l’aide.",
+    "content": "-u utilisateur : Spécifie l’utilisateur pour l’authentification distante\n-p motdepasse : Mot de passe pour l’utilisateur (sinon, invite masquée)\n@fichier : Liste de machines cibles\n\\\\* : Tous les ordinateurs du domaine\n-nobanner : Supprime l’affichage du bandeau d’accueil\n-? : Affiche l’aide",
+    "tags": ["pspasswd", "options", "aide"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Exemple de script batch pour changer le mot de passe sur plusieurs machines",
+    "explanation": "Automatise le changement du mot de passe administrateur local sur une liste de postes.",
+    "content": "for /f %%i in (liste_machines.txt) do pspasswd \\\\%%i Administrateur NouveauMotDePasse",
+    "tags": ["pspasswd", "script", "batch", "multi-machine"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Bonnes pratiques et limitations",
+    "explanation": "Conseils pour l’utilisation de PsPasswd.",
+    "content": "- Nécessite des droits administrateur sur les machines cibles\n- Le port RPC/SMB (445) doit être ouvert\n- Les mots de passe ne sont pas envoyés en clair sur le réseau\n- Utilisez des mots de passe forts et changez-les régulièrement\n- Peut être intégré dans des scripts d’automatisation pour la gestion de parc informatique",
+    "tags": ["pspasswd", "conseils", "limitations", "astuces"],
+    "color": "#a83ce3"
+  }
+]

@@ -1,0 +1,124 @@
+[
+  {
+    "title": "Débloat Windows (Apps UWP inutiles)",
+    "explanation": "Supprime les applications préinstallées indésirables",
+    "content": "$apps = @('*Bing*', '*Xbox*', '*Twitter*', '*Skype*', '*Solitaire*', '*Disney*', '*Spotify*', '*Instagram*', '*Facebook*')\n\nforeach ($app in $apps) {\n    Get-AppxPackage $app | Remove-AppxPackage\n    Get-AppxProvisionedPackage -Online | Where-Object { $_.PackageName -like $app } | Remove-AppxProvisionedPackage -Online\n}",
+    "tags": ["debloat", "apps", "uwp", "nettoyage", "powershell"],
+    "color": "#e33c3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Désactiver la télémétrie Windows",
+    "explanation": "Désactive le tracking et les données de diagnostic",
+    "content": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection' -Name 'AllowTelemetry' -Value 0\nSet-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat' -Name 'AITEnable' -Value 0",
+    "tags": ["privacy", "télémétrie", "registry", "windows", "optimisation"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Rearmer Windows + Office (Licence d'essai)",
+    "explanation": "Réinitialise les périodes d'essai de Windows et Office",
+    "content": "# Windows\ncscript C:\\Windows\\System32\\slmgr.vbs /rearm\n\n# Office\ncd 'C:\\Program Files\\Microsoft Office\\Office16'\ncscript ospp.vbs /rearm\n\nRestart-Computer -Force",
+    "tags": ["rearm", "licence", "activation", "windows", "office"],
+    "color": "#3ce36a",
+    "imageSrc": ""
+  },
+  {
+    "title": "Activation permanente KMS38 (Windows 10/11)",
+    "explanation": "Active Windows jusqu'en 2038 via KMS",
+    "content": "slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX\nslmgr /skms kms8.msguides.com\nslmgr /ato",
+    "tags": ["activation", "kms", "windows", "permanent", "licence"],
+    "color": "#a83ce3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Script automatisé complet (Débloat + Rearm + Nettoyage)",
+    "explanation": "Exécute toutes les tâches de maintenance et planifie leur exécution",
+    "content": "function Invoke-FullMaintenance {\n    # Débloat\n    $apps = @('*Bing*', '*Xbox*', '*Skype*')\n    $apps | ForEach-Object { Get-AppxPackage $_ | Remove-AppxPackage }\n    \n    # Télémétrie\n    Set-ItemProperty 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection' 'AllowTelemetry' 0\n    \n    # Rearm\n    cscript C:\\Windows\\System32\\slmgr.vbs /rearm\n    cd 'C:\\Program Files\\Microsoft Office\\Office16'\n    cscript ospp.vbs /rearm\n    \n    # Nettoyage\n    Cleanmgr /sagerun:1 | Out-Null\n    Dism /Online /Cleanup-Image /StartComponentCleanup\n}\n\n# Planification tous les 30 jours à 2h du matin\n$trigger = New-JobTrigger -Daily -At 2am -DaysInterval 30\nRegister-ScheduledJob -Name \"AutoMaintenance\" -ScriptBlock ${function:Invoke-FullMaintenance} -Trigger $trigger -ScheduledJobOption (New-ScheduledJobOption -RunElevated)",
+    "tags": ["automation", "planifié", "maintenance", "script", "powershell"],
+    "color": "#e3b13c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Désactiver Cortana",
+    "explanation": "Désactive complètement Cortana via le registre",
+    "content": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search' -Name 'AllowCortana' -Value 0",
+    "tags": ["cortana", "privacy", "registry", "optimisation"],
+    "color": "#3ce3c2",
+    "imageSrc": ""
+  },
+  {
+    "title": "Optimiser les services Windows",
+    "explanation": "Désactive les services inutiles (ex: Superfetch, Windows Error Reporting)",
+    "content": "$services = @('SysMain', 'WerSvc', 'WMPNetworkSvc', 'XblAuthManager')\nforeach ($service in $services) {\n    Stop-Service $service -Force\n    Set-Service $service -StartupType Disabled\n}",
+    "tags": ["services", "optimisation", "performance", "windows"],
+    "color": "#e36a3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Nettoyer les fichiers temporaires système",
+    "explanation": "Supprime les fichiers temporaires et les caches système",
+    "content": "Remove-Item -Path \"$env:windir\\Temp\\*\" -Recurse -Force\nRemove-Item -Path \"$env:LOCALAPPDATA\\Temp\\*\" -Recurse -Force\nRemove-Item -Path \"C:\\Windows\\Prefetch\\*\" -Recurse -Force",
+    "tags": ["nettoyage", "fichiers temporaires", "disque", "optimisation"],
+    "color": "#3c9be3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Désactiver les mises à jour automatiques",
+    "explanation": "Empêche Windows Update de se lancer automatiquement",
+    "content": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU' -Name 'NoAutoUpdate' -Value 1",
+    "tags": ["windows update", "mises à jour", "registry", "contrôle"],
+    "color": "#e33c7a",
+    "imageSrc": ""
+  },
+  {
+    "title": "Réinitialiser les paramètres privacy",
+    "explanation": "Désactive le suivi de localisation et les publicités",
+    "content": "Set-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo' 'Enabled' 0\nSet-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Sensor\\Overrides\\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}' 'SensorPermissionState' 0",
+    "tags": ["privacy", "tracking", "localisation", "registry"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Désactiver le rapport d'erreurs Windows",
+    "explanation": "Stoppe les rapports automatiques d'erreurs à Microsoft",
+    "content": "Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting' -Name 'Disabled' -Value 1",
+    "tags": ["erreurs", "privacy", "rapports", "windows"],
+    "color": "#3ce36a",
+    "imageSrc": ""
+  },
+  {
+    "title": "Activer le mode performance ultime",
+    "explanation": "Active le plan d'alimentation caché pour max performances",
+    "content": "powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61",
+    "tags": ["performance", "alimentation", "optimisation", "windows"],
+    "color": "#a83ce3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Script de post-installation Windows Ultime",
+    "explanation": "Combinaison de débloat radical, optimisations système et personnalisation pour une Windows minimaliste et performante",
+    "content": "iwr -useb https://raw.githubusercontent.com/UltimateWindowsToolkit/UWT/main/uwt.ps1 | iex\n\n# Version hardcore avec commandes manuelles\nif (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] \"Administrator\")) { \n    Start-Process powershell -ArgumentList \"-NoProfile -ExecutionPolicy Bypass -File `\"$PSCommandPath`\"\" -Verb RunAs\n    exit\n}\n\n# Noyau du script\nfunction Invoke-HardcoreOptimization {\n    # 1. Débloat nucléaire\n    $apps = @('*Xbox*', '*Bing*', '*Cortana*', '*OneDrive*', '*Teams*', '*Edge*')\n    $apps | ForEach-Object {\n        Get-AppxPackage $_ | Remove-AppxPackage -ErrorAction SilentlyContinue\n        Get-AppxProvisionedPackage -Online | Where-Object { $_.PackageName -like $_ } | Remove-AppxProvisionedPackage -Online -ErrorAction SilentlyContinue\n    }\n\n    # 2. Tuer les services inutiles\n    $services = @('DiagTrack', 'dmwappushservice', 'XblGameSave', 'XboxNetApiSvc')\n    $services | ForEach-Object {\n        Stop-Service $_ -Force\n        Set-Service $_ -StartupType Disabled\n    }\n\n    # 3. Registre : optimisations radicales\n    Set-ItemProperty 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management' 'DisablePagingExecutive' 1\n    Set-ItemProperty 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management' 'LargeSystemCache' 1\n    Set-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System' 'EnableLinkedConnections' 1\n\n    # 4. Désactivation complète de Defender\n    Set-MpPreference -DisableRealtimeMonitoring $true\n    Set-ItemProperty 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows Defender' 'DisableAntiSpyware' 1\n\n    # 5. Optimisations réseau\n    Set-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile' 'NetworkThrottlingIndex' 0xffffffff\n    Set-NetTCPSetting -InternetCustomProfile -CongestionProvider DCTCP\n\n    # 6. Nettoyage post-install\n    CleanMgr /sagerun:1 | Out-Null\n    Dism /Online /Cleanup-Image /StartComponentCleanup /ResetBase\n\n    # 7. Planificateur de tâches : mode performance\n    powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61\n    powercfg -setactive e9a42b02-d5df-448d-aa00-03f14749eb61\n\n    # 8. Automatisation via tâche planifiée\n    $trigger = New-JobTrigger -AtStartup -RandomDelay 00:01:00\n    $action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-WindowStyle Hidden -File \"C:\\Windows\\Optimize.ps1\"'\n    Register-ScheduledTask -TaskName \"HardcoreOptimizer\" -Trigger $trigger -Action $action -RunLevel Highest -Force\n}\n\n# Exécution + logs\nStart-Transcript -Path \"C:\\Windows\\Optimize.log\" -Append\nInvoke-HardcoreOptimization\nStop-Transcript\nRestart-Computer -Force",
+    "tags": ["debloat", "optimisation", "registre", "performance", "automatisation", "powershell", "noyau"],
+    "color": "#2c3e50",
+    "imageSrc": "",
+    "notes": [
+      "⚠️ Ce script désactive définitivement des composants système critiques",
+      "🔧 Inclut : suppression d'Edge/OneDrive, désactivation de Defender, optimisations réseau avancées",
+      "⏱️ Planifie une optimisation automatique au démarrage",
+      "📁 Crée un log détaillé dans C:\\Windows\\Optimize.log"
+    ],
+    "sources": [
+      "[1] Chris Titus Tech Debloater",
+      "[2] WinScript de flick9000",
+      "[4] Tiny11 PowerShell inspirations"
+    ]
+  },
+  {
+    "title": "Module de sécurité renforcée",
+    "explanation": "Configuration pare-feu avancée et isolation des processus",
+    "content": "# Isolation des apps UWP\nSet-ProcessMitigation -System -Enable DisableExtensionPoints\n\n# Pare-feu strict\nSet-NetFirewallProfile -All -DefaultInboundAction Block -DefaultOutboundAction Allow -NotifyOnListen True -LogFileName %SystemRoot%\\System32\\LogFiles\\Firewall\\pfirewall.log\n\n# Désactivation SMBv1\nDisable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol",
+    "tags": ["sécurité", "pare-feu", "smb", "mitigation"],
+    "color": "#e74c3c"
+  }
+]

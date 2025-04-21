@@ -1,0 +1,135 @@
+[
+  {
+    "title": "Présentation de PsSuspend",
+    "explanation": "PsSuspend est un utilitaire Sysinternals permettant de suspendre (geler) ou de reprendre l'exécution d'un processus local ou distant, sans le terminer. Cela permet de mettre temporairement en pause une application ou un service sans le fermer.",
+    "content": "PsSuspend fait partie de la suite PsTools. Il fonctionne sur Windows 8.1/10/11 et Windows Server 2012 ou supérieur. Il est utile pour le dépannage, l'analyse de processus, ou pour libérer temporairement des ressources système sans tuer le processus.",
+    "tags": ["pssuspend", "sysinternals", "processus", "suspendre", "resume", "windows"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et utiliser PsSuspend.",
+    "content": "Téléchargez PsSuspend depuis https://learn.microsoft.com/en-us/sysinternals/downloads/pssuspend. Copiez l’exécutable dans un dossier de votre PATH. Lancez pssuspend.exe depuis l’invite de commandes ou PowerShell. Aucune installation n’est requise.",
+    "tags": ["pssuspend", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Suspendre un processus local par nom",
+    "explanation": "Met en pause tous les processus portant un nom donné sur la machine locale.",
+    "content": "pssuspend notepad",
+    "tags": ["pssuspend", "local", "nom", "processus"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Suspendre un processus local par PID",
+    "explanation": "Met en pause le processus dont l'identifiant (PID) est spécifié.",
+    "content": "pssuspend 1234",
+    "tags": ["pssuspend", "local", "pid", "processus"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Reprendre un processus suspendu",
+    "explanation": "Relance un processus précédemment suspendu (par nom ou PID).",
+    "content": "pssuspend -r notepad\npssuspend -r 1234",
+    "tags": ["pssuspend", "resume", "relancer", "processus"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Suspendre un processus à distance",
+    "explanation": "Met en pause un processus sur un ordinateur distant (nécessite des droits administrateur).",
+    "content": "pssuspend \\\\NOM_MACHINE notepad",
+    "tags": ["pssuspend", "distant", "processus"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Reprendre un processus à distance",
+    "explanation": "Relance un processus suspendu sur une machine distante.",
+    "content": "pssuspend -r \\\\NOM_MACHINE notepad",
+    "tags": ["pssuspend", "distant", "resume", "processus"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Authentification distante avec identifiants",
+    "explanation": "Spécifie un utilisateur et un mot de passe pour l’accès à distance.",
+    "content": "pssuspend \\\\NOM_MACHINE -u Administrateur -p MotDePasse notepad",
+    "tags": ["pssuspend", "authentification", "distant"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Suspendre tous les processus d'un nom à distance",
+    "explanation": "Met en pause tous les processus d'un nom donné sur une machine distante.",
+    "content": "pssuspend \\\\NOM_MACHINE chrome.exe",
+    "tags": ["pssuspend", "distant", "batch", "processus"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Utilisation dans un script batch multi-machines",
+    "explanation": "Suspend tous les processus notepad sur une liste de machines.",
+    "content": "for /f %%i in (machines.txt) do pssuspend \\\\%%i notepad",
+    "tags": ["pssuspend", "batch", "script", "multi-machine"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Suspendre tous les processus d’un utilisateur spécifique",
+    "explanation": "Combine avec tasklist pour suspendre tous les processus d’un utilisateur donné.",
+    "content": "for /f \"tokens=2\" %i in ('tasklist /FI \"USERNAME eq jean\" /NH') do pssuspend %i",
+    "tags": ["pssuspend", "utilisateur", "script", "avancé"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Suspendre tous les processus sauf le système",
+    "explanation": "Suspend tous les processus sauf ceux appartenant à SYSTEM.",
+    "content": "for /f \"skip=3 tokens=2,7\" %i in ('tasklist') do if /i not \"%j\"==\"SYSTEM\" pssuspend %i",
+    "tags": ["pssuspend", "exclusion", "script", "avancé"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Suspendre puis reprendre automatiquement après un délai",
+    "explanation": "Suspend un processus, attend 60 secondes, puis le relance automatiquement.",
+    "content": "pssuspend notepad & timeout /t 60 & pssuspend -r notepad",
+    "tags": ["pssuspend", "temporisation", "script", "automation"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Suspendre tous les processus d’une liste",
+    "explanation": "Suspend tous les processus listés dans un fichier texte.",
+    "content": "for /f %i in (processus.txt) do pssuspend %i\n# processus.txt contient un nom ou PID par ligne",
+    "tags": ["pssuspend", "batch", "liste", "script"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Suspendre un service Windows (via son processus)",
+    "explanation": "Identifie le PID du service, puis le suspend.",
+    "content": "sc queryex nomduservice\n# Notez le PID, puis :\npssuspend <PID>",
+    "tags": ["pssuspend", "service", "windows", "avancé"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Automatiser la suspension lors d’un événement",
+    "explanation": "Exemple PowerShell : suspendre notepad dès qu’il démarre.",
+    "content": "while ($true) {\n  $p = Get-Process notepad -ErrorAction SilentlyContinue\n  if ($p) { pssuspend $p.Id; break }\n  Start-Sleep -Seconds 2\n}",
+    "tags": ["pssuspend", "powershell", "automation", "script"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Suspendre tous les processus d’un nom sur tous les serveurs d’un domaine",
+    "explanation": "Combine avec dsquery pour cibler tous les serveurs AD.",
+    "content": "for /f %i in ('dsquery server -o rdn') do pssuspend \\\\%i chrome.exe",
+    "tags": ["pssuspend", "ad", "multi-serveur", "batch"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Options principales et aide",
+    "explanation": "Résumé des options les plus utiles et affichage de l’aide.",
+    "content": "-r : Reprendre le processus\n-u utilisateur : Spécifie l’utilisateur pour l’authentification distante\n-p motdepasse : Mot de passe pour l’utilisateur\n\\\\machine : Nom du poste distant\nprocessus : Nom ou PID du processus à suspendre ou reprendre\n-? : Affiche l’aide",
+    "tags": ["pssuspend", "options", "aide"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Bonnes pratiques et limitations",
+    "explanation": "Conseils pour l’utilisation de PsSuspend.",
+    "content": "- Nécessite des droits administrateur sur la machine distante\n- Le port SMB (445) doit être ouvert\n- Utilisez le chemin complet de pssuspend.exe dans les scripts pour éviter les erreurs\n- Peut être utilisé dans des scripts d’automatisation pour la gestion de serveurs ou de postes clients\n- Suspendre certains processus système critiques peut rendre le système instable\n- Toujours vérifier l’impact métier avant de suspendre des applications en production",
+    "tags": ["pssuspend", "conseils", "limitations", "astuces"],
+    "color": "#e3b13c"
+  }
+]

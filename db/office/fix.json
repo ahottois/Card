@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Réparation rapide de la suite Office 365",
+    "explanation": "Corrige rapidement les fichiers Office corrompus sans connexion Internet.",
+    "content": "Start-Process -FilePath \"C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe\" -ArgumentList \"scenario=Repair platform=x64 culture=en-us forceappshutdown=True RepairType=QuickRepair DisplayLevel=False\" -Wait -NoNewWindow\n\nPour Office 32 bits, adaptez le chemin et mettez platform=x86.",
+    "tags": ["Office 365", "Quick Repair", "PowerShell", "suite Office", "réparation"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Réparation complète (en ligne) de la suite Office 365",
+    "explanation": "Télécharge et réinstalle Office pour corriger les problèmes profonds.",
+    "content": "Start-Process -FilePath \"C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe\" -ArgumentList \"scenario=Repair platform=x64 culture=en-us forceappshutdown=True RepairType=FullRepair DisplayLevel=False\" -Wait -NoNewWindow",
+    "tags": ["Office 365", "Full Repair", "PowerShell", "suite Office", "réparation"],
+    "color": "#e33c3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Réparation Office avec interface graphique",
+    "explanation": "Affiche une fenêtre de progression de la réparation Office.",
+    "content": "Start-Process -FilePath \"C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe\" -ArgumentList \"scenario=Repair platform=x64 culture=en-us forceappshutdown=True RepairType=FullRepair DisplayLevel=True\" -Wait",
+    "tags": ["Office 365", "Full Repair", "GUI", "PowerShell", "réparation"],
+    "color": "#e3b13c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Détection automatique de la version (x86/x64) et réparation",
+    "explanation": "Script PowerShell pour détecter la version d'Office et lancer la réparation adaptée.",
+    "content": "if (Test-Path \"C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe\") {\n  $platform = (Test-Path \"C:\\Program Files\\Microsoft Office\\root\\Office16\") ? \"x64\" : \"x86\"\n  Start-Process -FilePath \"C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe\" -ArgumentList \"scenario=Repair platform=$platform culture=en-us forceappshutdown=True RepairType=FullRepair DisplayLevel=False\" -Wait -NoNewWindow\n}",
+    "tags": ["Office 365", "auto", "PowerShell", "x86", "x64", "réparation"],
+    "color": "#3c9be3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Réparer Outlook : boîte de réception corrompue",
+    "explanation": "Utilise l’outil SCANPST pour réparer les fichiers PST/OST d’Outlook.",
+    "content": "\"C:\\Program Files\\Microsoft Office\\root\\Office16\\SCANPST.EXE\"\n\nSélectionnez le fichier PST/OST à réparer puis suivez les instructions.",
+    "tags": ["Outlook", "SCANPST", "PST", "OST", "réparation"],
+    "color": "#a83ce3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Réinitialiser le profil Outlook",
+    "explanation": "Crée un nouveau profil Outlook pour résoudre les problèmes de démarrage ou de configuration.",
+    "content": "Control Panel > Courrier > Afficher les profils > Ajouter\n\nOu en PowerShell :\nNew-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Office\\16.0\\Outlook\\Profiles\" -Name \"NouveauProfil\" -PropertyType String -Value \"\"",
+    "tags": ["Outlook", "profil", "réinitialisation", "PowerShell", "réparation"],
+    "color": "#3ce3c2",
+    "imageSrc": ""
+  },
+  {
+    "title": "Désactiver les compléments défaillants (Word, Excel, Outlook, PowerPoint)",
+    "explanation": "Démarre l’application Office concernée en mode sans échec.",
+    "content": "Outlook : outlook.exe /safe\nWord : winword.exe /safe\nExcel : excel.exe /safe\nPowerPoint : powerpnt.exe /safe",
+    "tags": ["Outlook", "Word", "Excel", "PowerPoint", "safe mode", "compléments"],
+    "color": "#e36a3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Réinitialiser les paramètres utilisateur Word/Excel/PowerPoint",
+    "explanation": "Supprime les clés de registre utilisateur pour réinitialiser les préférences.",
+    "content": "Remove-Item -Path \"HKCU:\\Software\\Microsoft\\Office\\16.0\\Word\" -Recurse -Force\nRemove-Item -Path \"HKCU:\\Software\\Microsoft\\Office\\16.0\\Excel\" -Recurse -Force\nRemove-Item -Path \"HKCU:\\Software\\Microsoft\\Office\\16.0\\PowerPoint\" -Recurse -Force",
+    "tags": ["Word", "Excel", "PowerPoint", "registre", "réinitialisation", "PowerShell"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Réparer l'installation d'Access",
+    "explanation": "La réparation de la suite Office s'applique aussi à Access. Lancez une réparation rapide ou complète comme pour les autres applications.",
+    "content": "Utilisez les scripts de réparation Office ci-dessus (QuickRepair ou FullRepair).",
+    "tags": ["Access", "Office 365", "réparation", "PowerShell"],
+    "color": "#e33c7a",
+    "imageSrc": ""
+  },
+  {
+    "title": "Désinstaller et réinstaller Office 365 proprement",
+    "explanation": "Utilisez l’outil officiel Microsoft pour désinstaller complètement Office avant une réinstallation.",
+    "content": "Téléchargez l’outil de désinstallation Office : https://aka.ms/SaRA-officeUninstall\nLancez-le puis réinstallez Office 365 depuis votre portail Microsoft.",
+    "tags": ["Office 365", "désinstallation", "réinstallation", "outil Microsoft"],
+    "color": "#3ce36a",
+    "imageSrc": ""
+  }
+]

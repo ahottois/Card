@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Vérifier la connectivité réseau",
+    "explanation": "Testez si votre ordinateur peut atteindre une adresse IP ou un site web.",
+    "content": "Commande :\nping 8.8.8.8\nping www.google.com\n\nSi le ping échoue, il y a un problème de connexion réseau ou d'accès à Internet.",
+    "tags": ["ping", "connectivité", "réseau", "diagnostic", "DOS"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Afficher la configuration IP",
+    "explanation": "Obtenez les informations sur votre adresse IP, passerelle et DNS.",
+    "content": "Commande :\nipconfig\n\nUtilisez ipconfig /all pour plus de détails (DNS, DHCP, etc.).",
+    "tags": ["ipconfig", "adresse IP", "configuration", "réseau", "DOS"],
+    "color": "#e33c3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Renouveler l'adresse IP",
+    "explanation": "Réinitialisez votre adresse IP si vous avez un conflit ou une connexion limitée.",
+    "content": "Commandes :\nipconfig /release\nipconfig /renew\n\nCela force le renouvellement de l'adresse IP depuis le serveur DHCP.",
+    "tags": ["ipconfig", "renew", "release", "DHCP", "DOS"],
+    "color": "#3ce36a",
+    "imageSrc": ""
+  },
+  {
+    "title": "Vider le cache DNS",
+    "explanation": "Résolvez les problèmes de résolution de noms de domaine.",
+    "content": "Commande :\nipconfig /flushdns\n\nCela efface le cache DNS local pour corriger d'éventuelles erreurs.",
+    "tags": ["ipconfig", "flushdns", "DNS", "cache", "DOS"],
+    "color": "#e3b13c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Afficher la table de routage",
+    "explanation": "Vérifiez les routes réseau configurées sur votre PC.",
+    "content": "Commande :\nroute print\n\nPermet de diagnostiquer les problèmes de routage ou de passerelle.",
+    "tags": ["route", "print", "routage", "passerelle", "DOS"],
+    "color": "#3c9be3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Vérifier la passerelle par défaut",
+    "explanation": "Testez si votre PC peut joindre la passerelle de votre réseau local.",
+    "content": "Commande :\nping [adresse_de_la_passerelle]\n\nExemple : ping 192.168.1.1",
+    "tags": ["ping", "passerelle", "gateway", "réseau local", "DOS"],
+    "color": "#a83ce3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Afficher les connexions réseau actives",
+    "explanation": "Listez toutes les connexions et ports ouverts.",
+    "content": "Commande :\nnetstat -an\n\nUtile pour détecter les connexions suspectes ou vérifier l'écoute de services.",
+    "tags": ["netstat", "connexions", "ports", "sécurité", "DOS"],
+    "color": "#3ce3c2",
+    "imageSrc": ""
+  },
+  {
+    "title": "Tracer la route jusqu'à une destination",
+    "explanation": "Identifiez où le trafic réseau est bloqué ou ralenti.",
+    "content": "Commande :\ntracert www.google.com\n\nAffiche chaque étape du chemin réseau jusqu'à la destination.",
+    "tags": ["tracert", "traceroute", "diagnostic", "latence", "DOS"],
+    "color": "#e36a3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Libérer et renouveler la configuration DNS",
+    "explanation": "Réinitialisez les paramètres DNS pour résoudre des problèmes de navigation.",
+    "content": "Commandes :\nipconfig /release\nipconfig /renew\nipconfig /flushdns",
+    "tags": ["ipconfig", "DNS", "release", "renew", "flushdns"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Tester la résolution de noms",
+    "explanation": "Vérifiez si un nom de domaine se résout correctement.",
+    "content": "Commande :\nnslookup www.google.com\n\nPermet de voir quelle adresse IP est renvoyée par le serveur DNS.",
+    "tags": ["nslookup", "DNS", "résolution", "nom de domaine", "DOS"],
+    "color": "#e33c7a",
+    "imageSrc": ""
+  }
+]

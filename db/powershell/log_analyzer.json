@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Afficher un log avec des couleurs dans la console",
+    "explanation": "Affiche chaque ligne d'un fichier log avec une couleur différente selon son contenu (ex: erreurs en rouge, warnings en jaune, infos en vert).",
+    "content": "Get-Content .\\monlog.log | ForEach-Object {\n    if ($_ -match 'ERROR') {\n        Write-Host $_ -ForegroundColor Red\n    } elseif ($_ -match 'WARN') {\n        Write-Host $_ -ForegroundColor Yellow\n    } elseif ($_ -match 'INFO') {\n        Write-Host $_ -ForegroundColor Green\n    } else {\n        Write-Host $_\n    }\n}",
+    "tags": ["PowerShell", "log", "couleur", "console", "Write-Host"],
+    "color": "#e33c3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Surveiller un log en temps réel avec couleurs",
+    "explanation": "Affiche en direct les nouvelles lignes d'un log et les colore selon leur type.",
+    "content": "Get-Content .\\monlog.log -Wait | ForEach-Object {\n    if ($_ -match 'ERROR') {\n        Write-Host $_ -ForegroundColor Red\n    } elseif ($_ -match 'WARN') {\n        Write-Host $_ -ForegroundColor Yellow\n    } elseif ($_ -match 'INFO') {\n        Write-Host $_ -ForegroundColor Green\n    } else {\n        Write-Host $_\n    }\n}",
+    "tags": ["PowerShell", "log", "temps réel", "couleur", "monitoring"],
+    "color": "#e3b13c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Exporter un log colorisé en HTML",
+    "explanation": "Génère un rapport HTML où chaque ligne est colorée selon le type de message (erreur, warning, info).",
+    "content": "$log = Get-Content .\\monlog.log\n$html = @\"\n<html><head><style>\n.err { color: red; }\n.warn { color: orange; }\n.info { color: green; }\n</style></head><body><pre>\n\"@\nforeach ($line in $log) {\n    if ($line -match 'ERROR') {\n        $html += \"<span class='err'>$line</span>\\n\"\n    } elseif ($line -match 'WARN') {\n        $html += \"<span class='warn'>$line</span>\\n\"\n    } elseif ($line -match 'INFO') {\n        $html += \"<span class='info'>$line</span>\\n\"\n    } else {\n        $html += \"$line\\n\"\n    }\n}\n$html += \"</pre></body></html>\"\n$html | Set-Content .\\rapport_log.html",
+    "tags": ["PowerShell", "log", "export", "HTML", "couleur"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Exporter un tableau log en HTML coloré (tableau)",
+    "explanation": "Convertit un log structuré en tableau HTML avec coloration conditionnelle des lignes/cellules.",
+    "content": "$log = Import-Csv .\\monlog.csv\n$head = @\"<style>\n.error { background-color: #FAAC9B; }\n.warning { background-color: #FAF69B; }\n.info { background-color: #D4F5B0; }\n</style>\"@\n$html = $log | ForEach-Object {\n    $css = if ($_.Type -eq 'ERROR') { 'error' } elseif ($_.Type -eq 'WARN') { 'warning' } elseif ($_.Type -eq 'INFO') { 'info' } else { '' }\n    \"<tr class='$css'><td>$($_.Date)</td><td>$($_.Type)</td><td>$($_.Message)</td></tr>\"\n}\n$table = \"<table><tr><th>Date</th><th>Type</th><th>Message</th></tr>\" + ($html -join \"\") + \"</table>\"\n(\"<html><head>$head</head><body>$table</body></html>\") | Set-Content .\\rapport_tableau.html",
+    "tags": ["PowerShell", "log", "HTML", "tableau", "couleur", "ConvertTo-Html"],
+    "color": "#3ce36a",
+    "imageSrc": ""
+  },
+  {
+    "title": "Filtrer et exporter des lignes spécifiques du log",
+    "explanation": "Sélectionne uniquement les erreurs et les exporte dans un fichier séparé.",
+    "content": "Get-Content .\\monlog.log | Where-Object { $_ -match 'ERROR' } | Set-Content .\\erreurs.log",
+    "tags": ["PowerShell", "log", "filtre", "export", "erreur"],
+    "color": "#a83ce3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Compter le nombre d'erreurs, warnings et infos",
+    "explanation": "Affiche un résumé du nombre de chaque type de message dans le log.",
+    "content": "$log = Get-Content .\\monlog.log\n$errors = ($log | Where-Object { $_ -match 'ERROR' }).Count\n$warns = ($log | Where-Object { $_ -match 'WARN' }).Count\n$infos = ($log | Where-Object { $_ -match 'INFO' }).Count\nWrite-Host \"Erreurs: $errors\" -ForegroundColor Red\nWrite-Host \"Warnings: $warns\" -ForegroundColor Yellow\nWrite-Host \"Infos: $infos\" -ForegroundColor Green",
+    "tags": ["PowerShell", "log", "statistiques", "résumé", "compte"],
+    "color": "#e36a3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Extraire les 20 dernières erreurs du log",
+    "explanation": "Affiche les 20 dernières lignes contenant 'ERROR' dans le fichier log.",
+    "content": "Get-Content .\\monlog.log | Where-Object { $_ -match 'ERROR' } | Select-Object -Last 20",
+    "tags": ["PowerShell", "log", "erreur", "dernier", "extraction"],
+    "color": "#e33c7a",
+    "imageSrc": ""
+  },
+  {
+    "title": "Exporter le log filtré en CSV",
+    "explanation": "Extrait les lignes contenant 'ERROR' et les exporte dans un fichier CSV.",
+    "content": "Get-Content .\\monlog.log | Where-Object { $_ -match 'ERROR' } | ForEach-Object {\n    [PSCustomObject]@{ Ligne = $_ }\n} | Export-Csv .\\erreurs.csv -NoTypeInformation -Delimiter ';'",
+    "tags": ["PowerShell", "log", "export", "CSV", "filtre"],
+    "color": "#3c9be3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Exporter le log en JSON",
+    "explanation": "Convertit chaque ligne du log en objet et exporte le tout en JSON.",
+    "content": "Get-Content .\\monlog.log | ForEach-Object {\n    [PSCustomObject]@{ Ligne = $_ }\n} | ConvertTo-Json | Set-Content .\\log.json",
+    "tags": ["PowerShell", "log", "export", "JSON"],
+    "color": "#3ce3c2",
+    "imageSrc": ""
+  },
+  {
+    "title": "Chercher des mots-clés dans le log",
+    "explanation": "Recherche toutes les lignes contenant un ou plusieurs mots-clés donnés.",
+    "content": "$keywords = @('timeout', 'failed', 'exception')\nGet-Content .\\monlog.log | Where-Object { $keywords | ForEach-Object { $_ -and ($_ -match $_) } }",
+    "tags": ["PowerShell", "log", "recherche", "mot-clé", "filtre"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Extraire les dates et heures du log",
+    "explanation": "Récupère et affiche toutes les dates/horaires trouvés dans le log (format AAAA-MM-JJ HH:MM:SS).",
+    "content": "Get-Content .\\monlog.log | ForEach-Object {\n    if ($_ -match '(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})') {\n        $matches[0]\n    }\n} | Sort-Object | Get-Unique",
+    "tags": ["PowerShell", "log", "date", "heure", "extraction"],
+    "color": "#e3b13c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Analyser la fréquence des erreurs par heure",
+    "explanation": "Compte le nombre d'erreurs par heure et affiche un résumé.",
+    "content": "Get-Content .\\monlog.log | Where-Object { $_ -match 'ERROR' } | ForEach-Object {\n    if ($_ -match '(\\d{2}:\\d{2}:\\d{2})') {\n        $heure = $matches[0].Substring(0,2)\n        $heure\n    }\n} | Group-Object | Sort-Object Name | ForEach-Object {\n    Write-Host \"Heure: $($_.Name)h - $($_.Count) erreurs\" -ForegroundColor Red\n}",
+    "tags": ["PowerShell", "log", "statistiques", "heure", "fréquence"],
+    "color": "#3ce36a",
+    "imageSrc": ""
+  },
+  {
+    "title": "Afficher les logs d'un intervalle de dates",
+    "explanation": "Filtre les lignes du log comprises entre deux dates précises.",
+    "content": "$start = [datetime]'2024-05-01'\n$end = [datetime]'2024-05-02'\nGet-Content .\\monlog.log | Where-Object {\n    if ($_ -match '(\\d{4}-\\d{2}-\\d{2})') {\n        $date = [datetime]$matches[0]\n        $date -ge $start -and $date -le $end\n    }\n}",
+    "tags": ["PowerShell", "log", "date", "filtre", "intervalle"],
+    "color": "#e33c3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Extraire les adresses IP du log",
+    "explanation": "Liste toutes les adresses IP trouvées dans le fichier log.",
+    "content": "Get-Content .\\monlog.log | ForEach-Object {\n    if ($_ -match '((\\d{1,3}\\.){3}\\d{1,3})') {\n        $matches[0]\n    }\n} | Sort-Object | Get-Unique",
+    "tags": ["PowerShell", "log", "adresse IP", "extraction"],
+    "color": "#a83ce3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Générer un rapport statistique HTML du log",
+    "explanation": "Crée un rapport HTML avec le nombre d'erreurs, warnings, infos et la liste des erreurs.",
+    "content": "$log = Get-Content .\\monlog.log\n$errors = ($log | Where-Object { $_ -match 'ERROR' })\n$warns = ($log | Where-Object { $_ -match 'WARN' })\n$infos = ($log | Where-Object { $_ -match 'INFO' })\n$summary = \"<h2>Résumé du log</h2><ul><li>Erreurs : $($errors.Count)</li><li>Warnings : $($warns.Count)</li><li>Infos : $($infos.Count)</li></ul>\"\n$list = \"<h3>Liste des erreurs</h3><pre>\" + ($errors -join \"\\n\") + \"</pre>\"\n(\"<html><body>$summary$list</body></html>\") | Set-Content .\\rapport_stats.html",
+    "tags": ["PowerShell", "log", "statistiques", "HTML", "rapport"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  }
+]

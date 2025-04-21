@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Vérifier et réparer les fichiers système (SFC)",
+    "explanation": "Analyse l'intégrité des fichiers système Windows et répare automatiquement les fichiers corrompus ou manquants.",
+    "content": "sfc /scannow\n\nÀ exécuter dans une invite de commandes ou PowerShell en mode administrateur. Attendez la fin de l'analyse et suivez les instructions affichées si des réparations sont nécessaires.",
+    "tags": ["sfc", "fichiers système", "réparation", "Windows", "intégrité"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Réparer l'image système Windows (DISM)",
+    "explanation": "Répare l'image système Windows, utile si SFC ne parvient pas à corriger certains problèmes.",
+    "content": "DISM /Online /Cleanup-Image /RestoreHealth\n\nÀ exécuter dans une invite de commandes ou PowerShell en mode administrateur. Redémarrez l’ordinateur après la réparation, puis relancez sfc /scannow si besoin.",
+    "tags": ["DISM", "image système", "réparation", "Windows", "maintenance"],
+    "color": "#e33c3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Vérifier et réparer le disque dur (CHKDSK)",
+    "explanation": "Recherche et répare les erreurs sur le disque dur.",
+    "content": "chkdsk C: /F /R\n\nÀ exécuter dans une invite de commandes en mode administrateur. Peut nécessiter un redémarrage pour corriger les erreurs détectées.",
+    "tags": ["chkdsk", "disque dur", "erreurs", "réparation", "Windows"],
+    "color": "#3ce36a",
+    "imageSrc": ""
+  },
+  {
+    "title": "Restaurer un point de restauration système",
+    "explanation": "Restaure Windows à un état antérieur à l’aide d’un point de restauration.",
+    "content": "Get-ComputerRestorePoint\nRestore-Computer -RestorePoint <NuméroDuPoint>\n\nRemplacez <NuméroDuPoint> par le numéro du point de restauration souhaité. Nécessite des droits administrateur et redémarre l’ordinateur.",
+    "tags": ["restauration", "point de restauration", "Restore-Computer", "Windows"],
+    "color": "#e3b13c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Prendre possession d’un fichier système",
+    "explanation": "Permet de modifier ou remplacer un fichier système protégé.",
+    "content": "takeown /f <CheminDuFichier>\nicacls <CheminDuFichier> /grant administrators:F\n\nRemplacez <CheminDuFichier> par le chemin complet du fichier à réparer.",
+    "tags": ["takeown", "icacls", "fichiers système", "propriété", "réparation"],
+    "color": "#3c9be3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Remplacer un fichier système corrompu",
+    "explanation": "Copie un fichier système sain à la place d’un fichier corrompu.",
+    "content": "copy <SourceFichier> <DestinationFichier>\n\nRemplacez <SourceFichier> par le chemin du fichier sain et <DestinationFichier> par le chemin du fichier corrompu.",
+    "tags": ["copy", "fichier système", "remplacement", "réparation", "Windows"],
+    "color": "#a83ce3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Réinitialiser les applications Windows",
+    "explanation": "Répare ou réinstalle les applications Windows Store.",
+    "content": "Get-AppxPackage -AllUsers | Foreach { Add-AppxPackage -DisableDevelopmentMode -Register \"$($_.InstallLocation)\\AppXManifest.xml\" }\n\nÀ exécuter dans PowerShell en mode administrateur.",
+    "tags": ["AppxPackage", "applications", "Windows Store", "réinstallation", "PowerShell"],
+    "color": "#3ce3c2",
+    "imageSrc": ""
+  },
+  {
+    "title": "Redémarrer un service Windows",
+    "explanation": "Permet de relancer un service système en cas de dysfonctionnement.",
+    "content": "Restart-Service -Name <NomDuService>\n\nRemplacez <NomDuService> par le nom du service à redémarrer, par exemple 'wuauserv' pour Windows Update.",
+    "tags": ["Restart-Service", "service", "Windows", "PowerShell", "dépannage"],
+    "color": "#e36a3c",
+    "imageSrc": ""
+  },
+  {
+    "title": "Réparer le registre Windows",
+    "explanation": "Sauvegarde et restaure une clé de registre en cas de corruption.",
+    "content": "Export-RegistryFile -Path \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\" -FilePath C:\\backup.reg\nImport-RegistryFile -FilePath C:\\backup.reg\n\nRemplacez les chemins selon vos besoins. À exécuter dans PowerShell.",
+    "tags": ["registre", "sauvegarde", "restauration", "PowerShell", "Windows"],
+    "color": "#3c67e3",
+    "imageSrc": ""
+  },
+  {
+    "title": "Réinstaller les composants Windows Update",
+    "explanation": "Réinitialise les composants de Windows Update en cas de problème de mise à jour.",
+    "content": "net stop wuauserv\nnet stop bits\nRen C:\\Windows\\SoftwareDistribution SoftwareDistribution.old\nRen C:\\Windows\\System32\\catroot2 catroot2.old\nnet start wuauserv\nnet start bits",
+    "tags": ["Windows Update", "réinitialisation", "mise à jour", "réparation", "Windows"],
+    "color": "#e33c7a",
+    "imageSrc": ""
+  }
+]

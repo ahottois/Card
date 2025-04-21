@@ -1,0 +1,103 @@
+[
+  {
+    "title": "Installer le module PSUtil pour PowerShell",
+    "explanation": "Installation simple du module PSUtil depuis la PowerShell Gallery",
+    "content": "Install-Module -Name PSUtil -Scope CurrentUser -Force",
+    "tags": ["psutil", "installation", "powershell", "module"],
+    "color": "#3c67e3",
+    "imageSrc": "",
+    "notes": [
+      "Exécutez cette commande dans une console PowerShell ouverte en administrateur si possible.",
+      "Le paramètre -Scope CurrentUser permet d'installer le module sans droits admin.",
+      "Après installation, importez le module avec : Import-Module PSUtil"
+    ],
+    "sources": [
+      "https://www.powershellgallery.com/packages/PSUtil/2.2.35",
+      "https://github.com/PowershellFrameworkCollective/PSUtil"
+    ]
+  },
+  {
+    "title": "Gestion des processus (PSUTIL)",
+    "explanation": "Commandes pour gérer les processus",
+    "content": "Get-PSUProcess\nStop-PSUProcess -Name 'notepad'\nGet-PSUProcessTree",
+    "tags": ["psutil", "processus", "gestion"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "PsExec - Exécution distante",
+    "explanation": "Exécuter des commandes sur une machine distante",
+    "content": "psexec \\\\serveur -u utilisateur -p motdepasse cmd.exe",
+    "tags": ["psexec", "sysinternals", "remote"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "PsKill - Tuer un processus",
+    "explanation": "Terminer un processus local ou distant",
+    "content": "pskill notepad\npskill -t \\\\serveur 1234",
+    "tags": ["pskill", "processus", "sysinternals"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "PsList - Lister les processus",
+    "explanation": "Affiche les processus avec détails",
+    "content": "pslist\npslist -s \\\\serveur",
+    "tags": ["pslist", "processus", "sysinternals"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "PsInfo - Informations système",
+    "explanation": "Obtenir des infos détaillées sur le système",
+    "content": "psinfo\npsinfo -d \\\\serveur",
+    "tags": ["psinfo", "sysinternals", "systeme"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "PsLoggedOn - Utilisateurs connectés",
+    "explanation": "Voir qui est connecté localement ou à distance",
+    "content": "psloggedon \\\\serveur",
+    "tags": ["psloggedon", "utilisateurs", "sysinternals"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "PsService - Gestion des services",
+    "explanation": "Contrôler les services Windows",
+    "content": "psservice restart spooler\npsservice \\\\serveur query",
+    "tags": ["psservice", "services", "sysinternals"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "PsSuspend - Suspendre un processus",
+    "explanation": "Geler/dégeler l'exécution d'un processus",
+    "content": "pssuspend notepad\npssuspend -r 1234",
+    "tags": ["pssuspend", "processus", "sysinternals"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "PsPasswd - Changer mot de passe",
+    "explanation": "Modifier un mot de passe utilisateur à distance",
+    "content": "pspasswd \\\\serveur utilisateur nouveau_mdp",
+    "tags": ["pspasswd", "sysinternals", "securite"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "PsShutdown - Gestion de l'alimentation",
+    "explanation": "Éteindre/redémarrer à distance",
+    "content": "psshutdown -s -f -t 0 \\\\serveur",
+    "tags": ["psshutdown", "sysinternals", "systeme"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "PsFile - Fichiers ouverts",
+    "explanation": "Voir les fichiers ouverts à distance",
+    "content": "psfile \\\\serveur",
+    "tags": ["psfile", "sysinternals", "fichiers"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "PsLoggedOn - Sessions actives",
+    "explanation": "Lister les sessions utilisateur actives",
+    "content": "psloggedon -l \\\\serveur",
+    "tags": ["psloggedon", "sysinternals", "sessions"],
+    "color": "#a83ce3"
+  }
+]

@@ -1,0 +1,114 @@
+[
+  {
+    "title": "Présentation de PsLogList",
+    "explanation": "PsLogList est un utilitaire Sysinternals en ligne de commande pour afficher, filtrer, exporter et nettoyer les journaux d'événements Windows localement ou à distance.",
+    "content": "PsLogList permet de lister les événements de tous les journaux (System, Application, Security, etc.), de filtrer par date, ID, source, type, et d’exporter les résultats en CSV ou texte. Il fonctionne sur Windows 8.1/10/11 et Windows Server 2012 ou supérieur. Il fait partie de la suite PsTools.",
+    "tags": ["psloglist", "sysinternals", "eventlog", "journal", "windows"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et utiliser PsLogList.",
+    "content": "Téléchargez PsLogList depuis https://learn.microsoft.com/en-us/sysinternals/downloads/psloglist. Copiez l’exécutable dans un dossier de votre PATH. Lancez psloglist.exe depuis l’invite de commandes ou PowerShell. Aucune installation n’est requise.",
+    "tags": ["psloglist", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Afficher les événements du journal Système local",
+    "explanation": "Affiche tout le contenu du journal Système de la machine locale.",
+    "content": "psloglist system",
+    "tags": ["psloglist", "local", "system", "eventlog"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Afficher les événements d’un autre journal",
+    "explanation": "Affiche les événements du journal Application, Security ou tout autre journal personnalisé.",
+    "content": "psloglist application\npsloglist security",
+    "tags": ["psloglist", "journal", "application", "security"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Afficher les événements d’un ordinateur distant",
+    "explanation": "Affiche les événements du journal Système sur une machine distante.",
+    "content": "psloglist \\\\NOM_MACHINE system",
+    "tags": ["psloglist", "distant", "eventlog"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Authentification distante",
+    "explanation": "Se connecter à une machine distante avec des identifiants spécifiques.",
+    "content": "psloglist \\\\NOM_MACHINE -u Administrateur -p MotDePasse system",
+    "tags": ["psloglist", "authentification", "distant"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Filtrer par date ou période",
+    "explanation": "Afficher seulement les événements après ou avant une date, ou dans une période récente.",
+    "content": "psloglist -a 04/01/25 -b 04/21/25 system\npsloglist -d 2 application  # 2 derniers jours\npsloglist -h 12 security     # 12 dernières heures",
+    "tags": ["psloglist", "filtre", "date", "période"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Filtrer par type, ID ou source d’événement",
+    "explanation": "N’affiche que certains types d’événements, ID ou sources.",
+    "content": "psloglist -f ew application        # Erreurs et avertissements\npsloglist -i 1000,1001 system      # Uniquement ID 1000 et 1001\npsloglist -e 6005,6006 system      # Exclut les ID 6005 et 6006\npsloglist -o cdrom,mouclass system # Uniquement les sources cdrom ou mouclass",
+    "tags": ["psloglist", "filtre", "type", "id", "source"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Exporter au format CSV ou personnalisé",
+    "explanation": "Sortie sur une ligne par événement, séparateur personnalisable (idéal pour Excel ou bases de données).",
+    "content": "psloglist -s -t \";\" application > app.csv",
+    "tags": ["psloglist", "export", "csv", "texte"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Afficher les nouveaux événements en temps réel",
+    "explanation": "Surveille les nouveaux événements générés (mode veille, local uniquement).",
+    "content": "psloglist -w -a 04/21/25 system",
+    "tags": ["psloglist", "temps réel", "surveillance"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Effacer un journal d’événements après affichage",
+    "explanation": "Vide le journal après avoir affiché les événements (option administrative).",
+    "content": "psloglist -c system",
+    "tags": ["psloglist", "clear", "vider", "eventlog"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Afficher les événements d’un fichier de log",
+    "explanation": "Lit et affiche les événements depuis un fichier de log exporté (.evt/.evtx).",
+    "content": "psloglist -l C:\\chemin\\monjournal.evt",
+    "tags": ["psloglist", "fichier", "evt", "evtx"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Utilisation sur plusieurs machines",
+    "explanation": "Collecte les événements sur une liste d’ordinateurs.",
+    "content": "psloglist @machines.txt application",
+    "tags": ["psloglist", "multi-machine", "batch"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Options principales et aide",
+    "explanation": "Résumé des options les plus utiles et affichage de l’aide.",
+    "content": "-a : après la date donnée (mm/dd/yy)\n-b : avant la date donnée\n-d/# : n derniers jours\n-h/# : n dernières heures\n-m/# : n dernières minutes\n-n/# : n derniers événements\n-i : inclure ID(s)\n-e : exclure ID(s)\n-o : inclure sources\n-q : exclure sources\n-f : filtrer types (e=erreur, w=warning, i=info)\n-s : sortie CSV\n-t : séparateur\n-w : mode veille (temps réel)\n-c : clear log après affichage\n-x : données étendues\n-? : aide complète",
+    "tags": ["psloglist", "options", "aide"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Exemple de script d’export automatisé",
+    "explanation": "Script batch pour exporter les 100 derniers événements critiques de plusieurs serveurs.",
+    "content": "for /f %i in (servers.txt) do psloglist \\\\%i -f e -n 100 system > %i_system_erreurs.txt",
+    "tags": ["psloglist", "script", "batch", "multi-machine", "export"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Bonnes pratiques et limitations",
+    "explanation": "Conseils pour l’utilisation de PsLogList.",
+    "content": "- Nécessite des droits administrateur sur la machine distante.\n- Le service EventLog doit être actif.\n- Le port SMB (445) doit être ouvert pour l’accès réseau.\n- Pour les exports massifs, privilégiez le format CSV (-s) et un séparateur adapté (-t).\n- Utilisez les filtres (-d, -h, -f, -i, -o) pour limiter la quantité de données et accélérer le traitement.",
+    "tags": ["psloglist", "conseils", "limitations", "astuces"],
+    "color": "#e3b13c"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "title": "Présentation de PsShutdown",
+    "explanation": "PsShutdown est un utilitaire Sysinternals qui permet d'éteindre, redémarrer, mettre en veille, hiberner, verrouiller, déconnecter ou envoyer un message à un ou plusieurs ordinateurs, localement ou à distance.",
+    "content": "PsShutdown fait partie de la suite PsTools. Il offre bien plus de flexibilité que la commande Windows shutdown, notamment pour la gestion à distance, la planification, l'affichage de messages personnalisés et la possibilité d'annuler une opération en cours. Il fonctionne sur Windows 8.1/10/11 et Windows Server 2012 ou supérieur.[1][2][4]",
+    "tags": ["psshutdown", "sysinternals", "shutdown", "remote", "power", "windows"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et utiliser PsShutdown.",
+    "content": "Téléchargez PsShutdown depuis https://learn.microsoft.com/en-us/sysinternals/downloads/psshutdown. Copiez l’exécutable dans un dossier de votre PATH. Lancez psshutdown.exe depuis l’invite de commandes ou PowerShell. Aucune installation n’est requise.[1][4]",
+    "tags": ["psshutdown", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Éteindre un ordinateur local ou distant",
+    "explanation": "Arrête un ordinateur immédiatement ou après un délai.",
+    "content": "psshutdown -s\npsshutdown \\\\NOM_MACHINE -s -t 60\n# -s : shutdown\n# -t 60 : délai de 60 secondes avant arrêt",
+    "tags": ["psshutdown", "shutdown", "distant", "délai"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Redémarrer un ordinateur local ou distant",
+    "explanation": "Redémarre un ordinateur après un délai ou à une heure précise.",
+    "content": "psshutdown -r -t 120\npsshutdown \\\\NOM_MACHINE -r -t 22:00\n# -r : reboot\n# -t 120 : délai de 120 secondes\n# -t 22:00 : redémarrage à 22h00",
+    "tags": ["psshutdown", "reboot", "distant", "planification"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Forcer la fermeture des applications",
+    "explanation": "Force la fermeture des applications ouvertes sans demander à l'utilisateur de sauvegarder.",
+    "content": "psshutdown -s -f\n# -f : force la fermeture des applications",
+    "tags": ["psshutdown", "force", "shutdown", "applications"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Envoyer un message aux utilisateurs avant l'arrêt",
+    "explanation": "Affiche un message personnalisé à tous les utilisateurs connectés lors du compte à rebours.",
+    "content": "psshutdown -s -t 60 -m \"Maintenance programmée. Merci de sauvegarder votre travail.\"\n# -m : message affiché",
+    "tags": ["psshutdown", "message", "notification", "utilisateurs"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Annuler un arrêt ou un redémarrage en cours",
+    "explanation": "Annule une opération planifiée (pendant le compte à rebours).",
+    "content": "psshutdown -a\n# -a : abort",
+    "tags": ["psshutdown", "annuler", "abort", "shutdown"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Déconnecter ou verrouiller un utilisateur",
+    "explanation": "Déconnecte ou verrouille la session de l'utilisateur courant.",
+    "content": "psshutdown -o   # Déconnecte\npsshutdown -l   # Verrouille",
+    "tags": ["psshutdown", "logoff", "lock", "session"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Mettre en veille, hiberner ou éteindre complètement",
+    "explanation": "Met la machine en veille, en hibernation ou l'éteint totalement (poweroff).",
+    "content": "psshutdown -d   # Veille\npsshutdown -h   # Hibernation\npsshutdown -k   # Poweroff (ou reboot si non supporté)",
+    "tags": ["psshutdown", "veille", "hibernation", "poweroff"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Arrêter plusieurs ordinateurs à la fois",
+    "explanation": "Arrête tous les ordinateurs listés dans un fichier texte.",
+    "content": "psshutdown -s @liste_machines.txt\n# @liste_machines.txt : un nom de machine par ligne",
+    "tags": ["psshutdown", "shutdown", "multi-machine", "batch"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Authentification distante avec identifiants",
+    "explanation": "Spécifie un utilisateur et un mot de passe pour l’accès à distance.",
+    "content": "psshutdown \\\\NOM_MACHINE -u Administrateur -p MotDePasse -s",
+    "tags": ["psshutdown", "authentification", "distant"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Options principales et aide",
+    "explanation": "Résumé des options les plus utiles et affichage de l’aide.",
+    "content": "-s : shutdown\n-r : reboot\n-h : hibernation\n-d : veille\n-k : poweroff\n-o : logoff\n-l : lock\n-a : abort\n-f : force fermeture applications\n-t <sec|h:m> : délai ou heure précise\n-m \"message\" : message personnalisé\n-c : autorise l'utilisateur à annuler\n-n <sec> : timeout connexion distante\n-u/-p : identifiants d'accès distant\n@fichier : liste de machines\n-? : affiche l’aide",
+    "tags": ["psshutdown", "options", "aide"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Bonnes pratiques et limitations",
+    "explanation": "Conseils pour l’utilisation de PsShutdown.",
+    "content": "- Nécessite des droits administrateur sur les machines distantes.\n- Le port SMB (445) doit être ouvert et l'accès au partage Admin$ activé.\n- Utilisez l’option -c pour permettre aux utilisateurs d’annuler l’arrêt.\n- Pour les opérations planifiées, vérifiez que le fuseau horaire est cohérent sur toutes les machines.\n- Combinez avec PsExec ou PsService pour des scénarios d’automatisation avancés.[1][2][4]",
+    "tags": ["psshutdown", "conseils", "limitations", "astuces"],
+    "color": "#a83ce3"
+  }
+]

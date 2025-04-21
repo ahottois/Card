@@ -1,0 +1,100 @@
+[
+  {
+    "title": "Présentation de PsList",
+    "explanation": "PsList est un utilitaire Sysinternals en ligne de commande pour afficher des informations détaillées sur les processus et les threads, localement ou à distance, sous Windows.",
+    "content": "PsList permet de lister tous les processus, d'afficher leur hiérarchie (arborescence), leurs threads, leur consommation mémoire, et d'obtenir des statistiques détaillées similaires à celles du Gestionnaire des tâches ou de Process Explorer, mais en mode console. Il fait partie de la suite PsTools.",
+    "tags": ["pslist", "sysinternals", "processus", "threads", "windows"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et utiliser PsList.",
+    "content": "Téléchargez PsList depuis https://learn.microsoft.com/en-us/sysinternals/downloads/pslist. Décompressez l'exécutable dans un dossier de votre PATH. Lancez pslist.exe depuis l'invite de commandes ou PowerShell.",
+    "tags": ["pslist", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Lister tous les processus locaux",
+    "explanation": "Affiche la liste de tous les processus en cours sur la machine locale.",
+    "content": "pslist",
+    "tags": ["pslist", "local", "processus"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Afficher les processus d'une machine distante",
+    "explanation": "Affiche la liste des processus d'un ordinateur distant (nécessite des droits administrateur).",
+    "content": "pslist \\\\NOM_MACHINE",
+    "tags": ["pslist", "distant", "processus"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Afficher l'arborescence des processus (mode arbre)",
+    "explanation": "Affiche les processus sous forme d'arbre (parent/enfant), comme dans Process Explorer.",
+    "content": "pslist -t",
+    "tags": ["pslist", "arborescence", "arbre", "processus"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Afficher les détails mémoire",
+    "explanation": "Affiche des statistiques détaillées sur la mémoire utilisée par chaque processus.",
+    "content": "pslist -m",
+    "tags": ["pslist", "mémoire", "détail", "processus"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Afficher les détails de threads",
+    "explanation": "Affiche les statistiques détaillées des threads de chaque processus.",
+    "content": "pslist -d",
+    "tags": ["pslist", "threads", "détail"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Afficher toutes les informations (mode étendu)",
+    "explanation": "Affiche toutes les informations détaillées sur les processus, la mémoire et les threads.",
+    "content": "pslist -x",
+    "tags": ["pslist", "détail", "étendu", "processus"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Afficher les statistiques d'un processus précis",
+    "explanation": "Affiche les informations détaillées pour un processus dont le nom commence par la chaîne donnée.",
+    "content": "pslist chrome",
+    "tags": ["pslist", "filtre", "processus"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Afficher les statistiques d'un PID précis",
+    "explanation": "Affiche les informations détaillées pour un processus selon son PID.",
+    "content": "pslist 1234",
+    "tags": ["pslist", "pid", "processus"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Mode Task Manager (rafraîchissement en continu)",
+    "explanation": "Affiche les processus comme le Gestionnaire des tâches, avec rafraîchissement automatique.",
+    "content": "pslist -s 5\n# Rafraîchit toutes les 5 secondes, appuyez sur ESC pour arrêter.",
+    "tags": ["pslist", "task manager", "rafraîchissement", "monitoring"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Authentification distante",
+    "explanation": "Utilise un compte spécifique pour accéder à une machine distante.",
+    "content": "pslist \\\\NOM_MACHINE -u Administrateur -p MotDePasse",
+    "tags": ["pslist", "authentification", "distant"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Options principales et aide",
+    "explanation": "Résumé des options utiles et affichage de l'aide intégrée.",
+    "content": "-t : Affiche les processus en arborescence\n-d : Affiche les threads\n-m : Affiche la mémoire\n-x : Affiche tout (processus, mémoire, threads)\n-s [n] : Mode Task Manager, rafraîchit toutes les n secondes\n-r n : Définit l'intervalle de rafraîchissement\n-u/-p : Authentification distante\n-e : Correspondance exacte du nom de processus\n-? : Affiche l'aide",
+    "tags": ["pslist", "options", "aide"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Bonnes pratiques et limitations",
+    "explanation": "Conseils pour l'utilisation de PsList.",
+    "content": "- PsList nécessite des droits administrateur pour accéder à distance.\n- Le port SMB (445) doit être ouvert pour l'accès réseau.\n- Utilisez le mode arbre (-t) pour comprendre la hiérarchie des processus.\n- Pour une analyse mémoire avancée, combinez avec VMMap ou RAMMap.\n- Utilisez -s pour surveiller en continu (mode top).",
+    "tags": ["pslist", "conseils", "limitations", "astuces"],
+    "color": "#e3b13c"
+  }
+]

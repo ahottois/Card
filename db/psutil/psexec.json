@@ -1,0 +1,93 @@
+[
+  {
+    "title": "Présentation de PsExec",
+    "explanation": "PsExec permet d'exécuter des commandes et des programmes sur des systèmes locaux ou distants, avec ou sans élévation de privilèges.",
+    "content": "PsExec fait partie de la suite Sysinternals. Il est souvent utilisé pour l'administration distante, l'automatisation et le dépannage.\n\nTéléchargement : https://docs.microsoft.com/fr-fr/sysinternals/downloads/psexec",
+    "tags": ["psexec", "sysinternals", "administration", "remote"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Exécution d'une commande sur une machine distante",
+    "explanation": "Lance une commande sur un autre ordinateur du réseau.",
+    "content": "psexec \\\\NOM_ORDI ipconfig /all",
+    "tags": ["psexec", "commande distante", "réseau"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Exécution d'un programme en tant qu'administrateur",
+    "explanation": "Lance un programme avec les droits SYSTEM ou administrateur local.",
+    "content": "psexec -i -s cmd.exe",
+    "tags": ["psexec", "system", "admin", "élévation"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Exécution en tant qu'utilisateur spécifique",
+    "explanation": "Utilise un compte utilisateur précis pour lancer la commande.",
+    "content": "psexec \\\\NOM_ORDI -u DOMAINE\\utilisateur -p motdepasse cmd.exe",
+    "tags": ["psexec", "authentification", "utilisateur"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Exécution d'un script PowerShell à distance",
+    "explanation": "Lance un script PowerShell sur un poste distant.",
+    "content": "psexec \\\\NOM_ORDI powershell -ExecutionPolicy Bypass -File C:\\chemin\\script.ps1",
+    "tags": ["psexec", "powershell", "script", "remote"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Ouvrir une session distante interactive",
+    "explanation": "Ouvre un shell interactif sur la machine distante.",
+    "content": "psexec \\\\NOM_ORDI -u administrateur -p motdepasse cmd.exe",
+    "tags": ["psexec", "interactive", "shell"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Installer un logiciel à distance",
+    "explanation": "Lance un programme d'installation sur un poste distant.",
+    "content": "psexec \\\\NOM_ORDI -h -u administrateur -p motdepasse msiexec /i \\\\serveur\\partage\\logiciel.msi /qn",
+    "tags": ["psexec", "installation", "logiciel", "remote"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Rediriger la sortie d'une commande distante",
+    "explanation": "Récupère la sortie d'une commande exécutée à distance.",
+    "content": "psexec \\\\NOM_ORDI ipconfig > resultat.txt",
+    "tags": ["psexec", "sortie", "redirection"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Exécuter un programme sur plusieurs machines",
+    "explanation": "Utilise un fichier texte contenant la liste des ordinateurs.",
+    "content": "psexec @liste_machines.txt -u administrateur -p motdepasse gpupdate /force",
+    "tags": ["psexec", "multiple", "batch"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Exécution sans fenêtre (mode caché)",
+    "explanation": "Lance un programme sans afficher de fenêtre sur la machine distante.",
+    "content": "psexec \\\\NOM_ORDI -d notepad.exe",
+    "tags": ["psexec", "hidden", "background"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Transférer un fichier et l'exécuter",
+    "explanation": "Copie un fichier sur la machine distante avant exécution.",
+    "content": "psexec \\\\NOM_ORDI -c monscript.bat",
+    "tags": ["psexec", "copie", "exécution"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Arrêter ou redémarrer un ordinateur à distance",
+    "explanation": "Utilise shutdown via PsExec.",
+    "content": "psexec \\\\NOM_ORDI shutdown /r /t 0",
+    "tags": ["psexec", "shutdown", "redémarrage"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Astuces et bonnes pratiques",
+    "explanation": "Conseils pour une utilisation optimale de PsExec.",
+    "content": "- Toujours exécuter PsExec en administrateur.\n- Le pare-feu Windows doit autoriser le trafic SMB (ports 445 et 139).\n- Utilisez l’option -h pour l’UAC sur Windows 10/11.\n- Utilisez -accepteula pour accepter la licence automatiquement.",
+    "tags": ["psexec", "astuces", "pratique"],
+    "color": "#a83ce3"
+  }
+]

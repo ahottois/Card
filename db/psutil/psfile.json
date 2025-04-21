@@ -1,0 +1,79 @@
+[
+  {
+    "title": "Présentation de PsFile",
+    "explanation": "PsFile est un utilitaire en ligne de commande Sysinternals permettant d'afficher et de fermer les fichiers ouverts à distance sur un système Windows.",
+    "content": "PsFile affiche la liste des fichiers ouverts sur un ordinateur local ou distant via le réseau, et permet de fermer ces fichiers à distance pour libérer des verrous ou résoudre des blocages. Il est particulièrement utile pour l'administration des partages de fichiers et la gestion des accès en entreprise.",
+    "tags": ["psfile", "sysinternals", "fichiers ouverts", "administration", "windows"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et installer PsFile.",
+    "content": "Téléchargez PsFile depuis le site officiel Microsoft Sysinternals (https://learn.microsoft.com/en-us/sysinternals/downloads/psfile). Décompressez l'exécutable dans un dossier inclus dans votre variable d'environnement PATH. L'outil ne nécessite pas d'installation supplémentaire.",
+    "tags": ["psfile", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Lister les fichiers ouverts localement",
+    "explanation": "Affiche tous les fichiers ouverts à distance sur la machine locale.",
+    "content": "psfile",
+    "tags": ["psfile", "fichiers ouverts", "local"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Lister les fichiers ouverts sur une machine distante",
+    "explanation": "Affiche tous les fichiers ouverts à distance sur un ordinateur du réseau.",
+    "content": "psfile \\\\NOM_MACHINE",
+    "tags": ["psfile", "fichiers ouverts", "distant"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Lister les fichiers ouverts avec authentification",
+    "explanation": "Utilise un nom d'utilisateur et un mot de passe pour accéder à la machine distante.",
+    "content": "psfile \\\\NOM_MACHINE -u Administrateur -p MotDePasse",
+    "tags": ["psfile", "authentification", "fichiers ouverts"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Afficher les fichiers ouverts correspondant à un chemin",
+    "explanation": "Filtre les résultats pour n'afficher que les fichiers correspondant à un chemin ou nom précis.",
+    "content": "psfile \\\\NOM_MACHINE C:\\Partage\\monfichier.txt",
+    "tags": ["psfile", "filtre", "chemin", "recherche"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Fermer un fichier ouvert par son ID",
+    "explanation": "Ferme un fichier ouvert à distance en utilisant son identifiant (ID) retourné par psfile.",
+    "content": "psfile \\\\NOM_MACHINE 123 -c",
+    "tags": ["psfile", "fermer", "id", "verrou"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Fermer un fichier ouvert par son chemin",
+    "explanation": "Ferme un fichier ouvert à distance en utilisant son chemin complet ou partiel.",
+    "content": "psfile \\\\NOM_MACHINE C:\\Partage\\monfichier.txt -c",
+    "tags": ["psfile", "fermer", "chemin", "verrou"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Afficher l'aide et la syntaxe complète",
+    "explanation": "Affiche l'aide intégrée de PsFile avec toutes les options et paramètres.",
+    "content": "psfile -?",
+    "tags": ["psfile", "aide", "syntaxe"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Exemple de script pour fermer tous les fichiers ouverts sur un partage",
+    "explanation": "Script batch pour fermer tous les fichiers ouverts sur un partage spécifique d'une machine distante.",
+    "content": "for /f \"skip=1 tokens=1\" %i in ('psfile \\\\NOM_MACHINE ^| findstr /i \"C:\\\\Partage\"') do psfile \\\\NOM_MACHINE %i -c",
+    "tags": ["psfile", "script", "batch", "fermeture"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Bonnes pratiques et limitations",
+    "explanation": "Conseils d'utilisation et points d'attention.",
+    "content": "- PsFile nécessite des droits administrateur sur la machine distante.\n- Le port SMB (445) doit être ouvert.\n- Contrairement à la commande NET FILE, PsFile n'a pas de limitation sur la longueur des chemins.\n- Utilisez PsFile pour résoudre les problèmes de fichiers verrouillés ou non libérés sur les partages réseau.",
+    "tags": ["psfile", "conseils", "limitations", "astuces"],
+    "color": "#a83ce3"
+  }
+]

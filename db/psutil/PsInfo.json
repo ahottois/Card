@@ -1,0 +1,107 @@
+[
+  {
+    "title": "Présentation de PsInfo",
+    "explanation": "PsInfo est un utilitaire Sysinternals qui collecte des informations détaillées sur un système Windows local ou distant.",
+    "content": "PsInfo permet d'obtenir le type d'installation, la version du noyau, l'organisation et le propriétaire enregistrés, le nombre et le type de processeurs, la taille de la mémoire, la date d'installation du système, la liste des correctifs installés, les applications installées, et plus encore. Il fonctionne localement ou à distance et fait partie de la suite PsTools.",
+    "tags": ["psinfo", "sysinternals", "inventaire", "windows", "administration"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et utiliser PsInfo.",
+    "content": "Téléchargez PsInfo depuis https://learn.microsoft.com/en-us/sysinternals/downloads/psinfo. Décompressez l'exécutable dans un dossier de votre PATH. Aucune installation n'est requise, il suffit d'exécuter PsInfo.exe depuis l'invite de commandes.",
+    "tags": ["psinfo", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Afficher les informations système locales",
+    "explanation": "Affiche toutes les informations système sur l'ordinateur local.",
+    "content": "psinfo",
+    "tags": ["psinfo", "local", "inventaire"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Afficher les informations d'un ordinateur distant",
+    "explanation": "Affiche les informations système d'un ordinateur distant.",
+    "content": "psinfo \\\\NOM_ORDINATEUR",
+    "tags": ["psinfo", "distant", "inventaire"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Authentification distante avec identifiants",
+    "explanation": "Spécifie un utilisateur et un mot de passe pour accéder à distance.",
+    "content": "psinfo \\\\NOM_ORDINATEUR -u Administrateur -p MotDePasse",
+    "tags": ["psinfo", "authentification", "distant"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Lister les correctifs installés (hotfixes)",
+    "explanation": "Affiche la liste des hotfixes installés sur le système.",
+    "content": "psinfo -h\npsinfo \\\\NOM_ORDINATEUR -h",
+    "tags": ["psinfo", "hotfix", "correctifs"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Lister les applications installées",
+    "explanation": "Affiche la liste des logiciels/applications installés.",
+    "content": "psinfo -s\npsinfo \\\\NOM_ORDINATEUR -s",
+    "tags": ["psinfo", "applications", "logiciels"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Afficher les informations sur les disques",
+    "explanation": "Affiche les informations sur les volumes de disque installés.",
+    "content": "psinfo -d\npsinfo \\\\NOM_ORDINATEUR -d",
+    "tags": ["psinfo", "disque", "volumes"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Exporter les résultats au format CSV",
+    "explanation": "Génère une sortie CSV pour une analyse ou un traitement automatique.",
+    "content": "psinfo -c > inventaire.csv\npsinfo \\\\NOM_ORDINATEUR -c > distant.csv",
+    "tags": ["psinfo", "csv", "export"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Changer le séparateur CSV",
+    "explanation": "Modifie le séparateur utilisé dans la sortie CSV (par défaut la virgule).",
+    "content": "psinfo -c -t ';' > inventaire.csv",
+    "tags": ["psinfo", "csv", "délimiteur"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Filtrer l'affichage sur un champ précis",
+    "explanation": "N'affiche que la donnée correspondant au filtre (exemple : service pack).",
+    "content": "psinfo service\npsinfo \\\\NOM_ORDINATEUR service",
+    "tags": ["psinfo", "filtre", "champ"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Inventaire de plusieurs machines via fichier",
+    "explanation": "Exécute l'inventaire sur une liste d'ordinateurs fournie dans un fichier texte.",
+    "content": "psinfo @liste_ordinateurs.txt -c > inventaire.csv",
+    "tags": ["psinfo", "batch", "multi-machine"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Utilisation avancée avec PowerShell",
+    "explanation": "Exemple de script PowerShell pour automatiser l'inventaire logiciel sur plusieurs machines.",
+    "content": "$computers = Get-Content .\\liste_ordinateurs.txt\nforeach ($computer in $computers) {\n    .\\psinfo.exe -s \\\\$computer > $computer.txt\n}",
+    "tags": ["psinfo", "powershell", "script", "automation"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Afficher l'aide et la syntaxe complète",
+    "explanation": "Affiche l'aide intégrée de PsInfo avec toutes les options.",
+    "content": "psinfo -?",
+    "tags": ["psinfo", "aide", "syntaxe"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Bonnes pratiques et limitations",
+    "explanation": "Conseils d'utilisation et points d'attention.",
+    "content": "- PsInfo nécessite l'accès au registre distant (Remote Registry service actif).\n- L'utilisateur doit avoir accès à HKLM\\System sur la machine distante.\n- Le port SMB (445) doit être ouvert pour l'accès réseau.\n- Utilisez l'option -nobanner pour supprimer l'en-tête Sysinternals dans les scripts.",
+    "tags": ["psinfo", "conseils", "limitations", "astuces"],
+    "color": "#e3b13c"
+  }
+]

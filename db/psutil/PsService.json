@@ -1,0 +1,107 @@
+[
+  {
+    "title": "Présentation de PsService",
+    "explanation": "PsService est un utilitaire Sysinternals permettant de visualiser, contrôler et configurer les services Windows localement ou à distance. Il permet de démarrer, arrêter, redémarrer, mettre en pause, reprendre, interroger l’état, configurer le type de démarrage, afficher les dépendances, la sécurité et rechercher des services sur le réseau.",
+    "content": "PsService fait partie de la suite PsTools. Il fonctionne sur Windows 8.1/10/11 et Windows Server 2012 ou supérieur. Il se distingue de la commande SC par la possibilité de s’authentifier avec un autre compte sur une machine distante et de rechercher un service sur tout le réseau.[1][4][6]",
+    "tags": ["psservice", "sysinternals", "services", "windows", "remote"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et utiliser PsService.",
+    "content": "Téléchargez PsService depuis https://learn.microsoft.com/en-us/sysinternals/downloads/psservice ou dans la suite PsTools. Copiez l’exécutable dans un dossier de votre PATH. Lancez psservice.exe depuis l’invite de commandes ou PowerShell. Aucune installation n’est requise.[1][4][6]",
+    "tags": ["psservice", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Lister tous les services locaux",
+    "explanation": "Affiche la liste de tous les services (actifs et arrêtés) sur la machine locale.",
+    "content": "psservice",
+    "tags": ["psservice", "local", "liste", "services"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Lister tous les services d’un ordinateur distant",
+    "explanation": "Affiche la liste des services sur une machine distante.",
+    "content": "psservice \\\\NOM_MACHINE",
+    "tags": ["psservice", "distant", "liste", "services"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Afficher le statut d’un service",
+    "explanation": "Affiche l’état (en cours, arrêté, etc.) d’un service précis.",
+    "content": "psservice query NomService",
+    "tags": ["psservice", "statut", "query", "service"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Afficher la configuration d’un service",
+    "explanation": "Affiche les paramètres de configuration du service (chemin, type de démarrage, etc.).",
+    "content": "psservice config NomService",
+    "tags": ["psservice", "config", "service"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Démarrer, arrêter, redémarrer un service",
+    "explanation": "Commandes pour démarrer, arrêter ou redémarrer un service local ou distant.",
+    "content": "psservice start NomService\npsservice stop NomService\npsservice restart NomService\npsservice \\\\NOM_MACHINE restart NomService",
+    "tags": ["psservice", "start", "stop", "restart", "service"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Mettre en pause ou reprendre un service",
+    "explanation": "Met en pause ou reprend un service (si le service le supporte).",
+    "content": "psservice pause NomService\npsservice cont NomService",
+    "tags": ["psservice", "pause", "resume", "service"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Changer le type de démarrage d’un service",
+    "explanation": "Configure le type de démarrage : automatique, manuel (demand), désactivé.",
+    "content": "psservice setconfig NomService auto\npsservice setconfig NomService demand\npsservice setconfig NomService disabled",
+    "tags": ["psservice", "setconfig", "démarrage", "service"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Lister les dépendances d’un service",
+    "explanation": "Affiche la liste des services dépendants d’un service donné.",
+    "content": "psservice depend NomService",
+    "tags": ["psservice", "dependances", "service"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Afficher la sécurité d’un service",
+    "explanation": "Affiche le descripteur de sécurité d’un service (permissions).",
+    "content": "psservice security NomService",
+    "tags": ["psservice", "securité", "permissions", "service"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Rechercher un service sur le réseau",
+    "explanation": "Recherche tous les ordinateurs du réseau où un service donné est présent et actif.",
+    "content": "psservice find NomService",
+    "tags": ["psservice", "find", "recherche", "réseau"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Authentification distante avec identifiants",
+    "explanation": "Spécifie un utilisateur et un mot de passe pour l’accès à distance.",
+    "content": "psservice \\\\NOM_MACHINE -u Administrateur -p MotDePasse query NomService",
+    "tags": ["psservice", "authentification", "distant"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Afficher l’aide et la syntaxe complète",
+    "explanation": "Affiche l’aide intégrée de PsService avec toutes les options.",
+    "content": "psservice -?",
+    "tags": ["psservice", "aide", "options"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Bonnes pratiques et limitations",
+    "explanation": "Conseils pour l’utilisation de PsService.",
+    "content": "- Nécessite des droits administrateur sur la machine distante.\n- Le port SMB (445) doit être ouvert pour l’accès réseau.\n- Le service RemoteRegistry doit être actif pour certaines opérations.\n- Pour obtenir le nom exact du service, utilisez la commande sc getkeyname \"Nom affiché\".\n- PsService ne gère pas toujours bien les services avec dépendances complexes.[2][5][6]",
+    "tags": ["psservice", "conseils", "limitations", "astuces"],
+    "color": "#e36a3c"
+  }
+]

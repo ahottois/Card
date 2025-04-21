@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Présentation de PsLoggedOn",
+    "explanation": "PsLoggedOn est un utilitaire Sysinternals qui affiche les utilisateurs connectés localement ou via des ressources réseau, sur un ordinateur local ou distant.",
+    "content": "PsLoggedOn permet de savoir qui est connecté sur une machine Windows, soit en session locale (profil chargé dans le registre), soit via des partages réseau (SMB, RemoteRegistry, etc.). Il fonctionne en ligne de commande, localement ou à distance, et fait partie de la suite PsTools. Il utilise le registre (HKEY_USERS) pour les sessions locales et l’API NetSessionEnum pour les connexions réseau.[1][2][6]",
+    "tags": ["psloggedon", "sysinternals", "sessions", "utilisateurs", "windows"],
+    "color": "#3c67e3"
+  },
+  {
+    "title": "Téléchargement et installation",
+    "explanation": "Comment obtenir et utiliser PsLoggedOn.",
+    "content": "Téléchargez PsLoggedOn depuis https://learn.microsoft.com/en-us/sysinternals/downloads/psloggedon. Copiez l’exécutable dans un dossier de votre PATH. Aucune installation n’est requise, lancez simplement psloggedon.exe depuis l’invite de commandes ou PowerShell.[1][6]",
+    "tags": ["psloggedon", "installation", "sysinternals"],
+    "color": "#e33c3c"
+  },
+  {
+    "title": "Lister les utilisateurs connectés localement et via réseau",
+    "explanation": "Affiche tous les utilisateurs connectés localement ou via des partages réseau sur la machine locale.",
+    "content": "psloggedon",
+    "tags": ["psloggedon", "local", "réseau", "sessions"],
+    "color": "#3ce36a"
+  },
+  {
+    "title": "Lister uniquement les utilisateurs connectés localement",
+    "explanation": "Affiche uniquement les utilisateurs ayant une session locale ouverte (profil chargé dans le registre).",
+    "content": "psloggedon -l",
+    "tags": ["psloggedon", "local", "sessions"],
+    "color": "#e3b13c"
+  },
+  {
+    "title": "Lister les utilisateurs connectés sur un ordinateur distant",
+    "explanation": "Affiche les utilisateurs connectés sur une machine distante (localement ou via réseau).",
+    "content": "psloggedon \\\\NOM_MACHINE",
+    "tags": ["psloggedon", "distant", "sessions"],
+    "color": "#3c9be3"
+  },
+  {
+    "title": "Masquer les horaires de connexion",
+    "explanation": "N’affiche pas les horaires de connexion dans les résultats.",
+    "content": "psloggedon -x",
+    "tags": ["psloggedon", "options", "affichage"],
+    "color": "#a83ce3"
+  },
+  {
+    "title": "Rechercher sur quels ordinateurs un utilisateur est connecté",
+    "explanation": "Recherche sur le réseau les ordinateurs où un utilisateur précis est connecté (fonctionnalité sujette à limitation selon l’environnement).",
+    "content": "psloggedon nom_utilisateur",
+    "tags": ["psloggedon", "utilisateur", "recherche"],
+    "color": "#3ce3c2"
+  },
+  {
+    "title": "Afficher l'aide et la syntaxe",
+    "explanation": "Affiche la liste des options disponibles pour PsLoggedOn.",
+    "content": "psloggedon -?",
+    "tags": ["psloggedon", "aide", "options"],
+    "color": "#e36a3c"
+  },
+  {
+    "title": "Exemple de script PowerShell pour plusieurs machines",
+    "explanation": "Script pour lister les utilisateurs connectés sur une liste de serveurs et exporter le résultat en CSV.",
+    "content": "$servers = Get-Content .\\servers.txt\nforeach ($server in $servers) {\n  $output = & .\\psloggedon.exe -x -l \\\\$server\n  # Traitement du $output pour extraction et export CSV\n}",
+    "tags": ["psloggedon", "script", "powershell", "multi-machine"],
+    "color": "#e33c7a"
+  },
+  {
+    "title": "Bonnes pratiques et limitations",
+    "explanation": "Conseils pour l’utilisation de PsLoggedOn.",
+    "content": "- Nécessite le service RemoteRegistry actif sur les machines distantes.\n- Ne permet pas de spécifier des identifiants alternatifs (-u/-p non supportés).\n- Les horaires de connexion sont basés sur le registre et peuvent ne pas être parfaitement précis.\n- Pour les connexions réseau, le port SMB (445) doit être ouvert.\n- L’option de recherche par utilisateur peut ne pas fonctionner selon l’environnement réseau.[1][2][6]",
+    "tags": ["psloggedon", "conseils", "limitations", "astuces"],
+    "color": "#3ce36a"
+  }
+]
