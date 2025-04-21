@@ -23,7 +23,7 @@ Ce projet permet de créer, personnaliser et gérer des cartes animées avec des
 
 1. Clonez ce dépôt :
    ```bash
-   git clone <url-du-dépôt>
+   git clone https://github.com/ahottois/Card
 
 2. Ouvrez le fichier index.html dans votre navigateur.
 
